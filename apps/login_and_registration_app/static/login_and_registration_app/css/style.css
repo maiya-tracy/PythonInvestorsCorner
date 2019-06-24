@@ -1,0 +1,13 @@
+/* .side-nav {
+    height:100%;
+    background-color:grey;
+    display: inline-block;
+} */
+
+.custom-side-nav {
+    height:100%;
+    background-color:lightblue;
+    border:black solid 2px;
+}
+
+.media_icon

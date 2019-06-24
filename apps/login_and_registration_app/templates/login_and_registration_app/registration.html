@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <!-- Meta data -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Style -->
+        {% load static %}
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}"> 
+        <title>Login and Registration</title>
+</head>
+
+    <body>
+        <div class="red container-fluid">
+            <div class="row justify-content-center">
+                <h1>Bringing investors together</h1>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-3 border border-success rounded">
+                    <form action='/registration' method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" name="first_name" class="form-control" placeholder="First Name">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "first_name" %}
+                            <p class="text-danger">{{ message }}</p>
+                            {% endif%}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "last_name" %}
+                            <p class="text-danger">{{ message }}</p>
+                            {% endif%}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday">Date of Birth</label>
+                            <input type="date" name="dob" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" class="form-control" placeholder="Email">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "email" %}
+                            <p class="text-danger">{{ message }}</p>
+                            {% endif%}
+                            {% endfor %}
+                            {% endif %}
+
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "password" %}
+                            <p class="text-danger">{{ message }}</p>
+                            {% endif%}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirm">Confirm Password</label>
+                            <input type="password" name="password_confirm" class="form-control" placeholder="Password">
+                            {% if messages %}
+                            {% for message in messages %}
+                            {% if message.extra_tags == "password_confirm" %}
+                            <p class="text-danger">{{ message }}</p>
+                            {% endif%}
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" value="Join now!" class="btn btn-primary rounded-pill">
+                            <p>or Register with</p>
+                            <div>
+                                <p>
+                                    <a href="###"><img id="media_icon" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt=""></a>
+                                    <a href="###" class="btn btn-danger">G</a>
+                                    <a href="###" class="btn btn-primary">Ln</a>
+                                </p>
+                            </div>
+
+                            <p>Have an account? <a href="/login" class="text-danger">Sign in here!</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
