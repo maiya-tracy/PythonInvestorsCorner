@@ -65,12 +65,12 @@ class Chat(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = ChatManager()
 
-def MessageManager(models.Manager):
+class MessageManager(models.Manager):
     def message_validator():
         errors = {}
     return errors
 
-def Message(models.Model):
+class Message(models.Model):
     DBmessage = models.TextField()
     chat = models.ForeignKey(Chat, related_name = 'chat_messages')
     sent_by = models.ForeignKey(User, related_name = 'user_messages')
@@ -78,12 +78,12 @@ def Message(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = MessageManager()
 
-def StockManager(models.Manager):
+class StockManager(models.Manager):
     def stock_validator():
         errors = {}
     return errors
 
-def Stock(models.Model):
+class Stock(models.Model):
     users = models.ManyToManyField(User, related_name = 'watched_stocks')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
