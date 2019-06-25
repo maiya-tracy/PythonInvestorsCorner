@@ -8,10 +8,16 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <!-- Style -->
         {% load static %}
+<<<<<<< HEAD
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
+=======
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}"> 
-        <title>Login and Registration</title>
+        <link rel="stylesheet" href="{% static 'login_and_registration_app/css/our_style.css' %}">
+>>>>>>> 48463f2991e98d20efe46fbf8138c0d04152e22c
+        <title>Registration</title>
 </head>
 
     <body>
@@ -21,7 +27,7 @@
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col-3 border border-success rounded">
-                    <form action='/registration' method="POST">
+                    <form action='/registration/processing' method="POST">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="first_name">First Name</label>
@@ -88,9 +94,9 @@
                             <p>or Register with</p>
                             <div>
                                 <p>
-                                    <a href="###"><img id="media_icon" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt=""></a>
-                                    <a href="###" class="btn btn-danger">G</a>
-                                    <a href="###" class="btn btn-primary">Ln</a>
+                                    <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
+                                    <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google-plus.png' %}" alt="google login"></a>
+                                    <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
                                 </p>
                             </div>
 

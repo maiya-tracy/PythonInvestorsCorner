@@ -7,34 +7,71 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   {% load static %}
-  <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'login_and_registration_app/css/our_style.css' %}">
   <title>Home</title>
 </head>
 
 <body>
-  <div class="container">
+  <div class="container p-0 ">
     <div class="row">
       <div class="col">
-        <a href="***" class="btn btn-dark rounded-buttons">Logo</a>
+        <a href="***" class="btn btn-outline-dark btn-lg rounded-buttons ">Logo</a>
         <a href="***" class="btn btn-dark rounded-buttons">About</a>
         <a href="***" class="btn btn-dark rounded-buttons">Contact</a>
-        <a href="***" class="btn btn-dark rounded-buttons">Forums</a>
+        <a href="***" class="btn btn-dark rounded-buttons">Learn More</a>
       </div>
-      <div class='col'>
+      <div class='col text-right'>
         <a href="/login" class="btn btn-success rounded-buttons">login</a>
         <a href="/registration" class="btn btn-danger rounded-buttons">registration</a>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <p>Invest with Confidence. </p>
-        <p>Connecting investors and financial analysts everywhere</p>
-        <a href="/registration" class="btn btn-danger rounded-buttons">registration</a>
+    <br>
+    <br>
+    <div class="jumbotron jumbotron-fluid" id="jumbo">
+      <br>
+      <video id="video-background" playsinline muted autoplay loop>
+          <source src="{% static 'login_and_registration_app/images/background_scape.mp4' %}"type="video/mp4"></source>
+<<<<<<< HEAD
+      </video> 
+      <!-- Video by Ricardo Esquivel from Pexels -->
+=======
+      </video>
+>>>>>>> 48463f2991e98d20efe46fbf8138c0d04152e22c
+      <div class="container text-center" id="jumbo-container">
+          <h1 class="display-4">Investor's Corner</h1>
+          <p class="lead">Connecting investors and financial analysts everywhere</p>
+          <br>
+          <a href="/registration" class="btn btn-danger btn-lg rounded-buttons">Sign Up</a>
       </div>
-      <div class="col">
-
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+  <div class="container">
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-4 text-center">
+        <img src="{% static 'login_and_registration_app/images/facebook.png' %}" class="rounded-circle" id="auth-image" alt="author image">
+        <p>Justin Duong</p>
+        <p>Full Stack Developer</p>
+      </div>
+      <div class="col-4 text-center">
+        <img src="{% static 'login_and_registration_app/images/jack.jpg' %}" class="rounded-circle" id="auth-image" alt="author image">
+        <p>Jack Long</p>
+        <p>Full Stack Developer</p>
+      </div>
+      <div class="col-4 text-center">
+        <img src="{% static 'login_and_registration_app/images/maia.jpg' %}" class="rounded-circle" id="auth-image" alt="author image">
+        <p>Maia Tracy</p>
+        <p>Full Stack Developer</p>
       </div>
     </div>
+  </div>
+  <div class="container" id="bottom-nav">
+    <br>
+    <br>
   </div>
 </body>
 
