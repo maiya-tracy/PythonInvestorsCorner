@@ -22,7 +22,7 @@ class UserManager(models.Manager):
             errors['email'] = "Email already in system"
         if len(postData['password']) < 8:
             errors['password'] = "Password must be at least 8 characters long"
-        if postData['password'] != postData['pwconfirm']:
+        if postData['password'] != postData['password_confirm']:
             errors['confirmpw'] = "Password and Confirm Password must match"
         return errors
     def login_validator(self, postData):

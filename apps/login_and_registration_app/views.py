@@ -1,4 +1,9 @@
 from django.shortcuts import render, HttpResponse, redirect
+from .models import User, Chat, Message, Stock
+from django.contrib import messages
+import bcrypt
+import datetime
+import re
 
 
 # ------------------------------------------------------------------
@@ -23,7 +28,7 @@ def registration_process(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value, extra_tags = key)
-        return redirect('/')
+        return redirect('/registration')
     else:
         DBfirst_name = request.POST["first_name"]
         DBlast_name = request.POST["last_name"]
@@ -36,7 +41,7 @@ def registration_process(request):
         request.session['first_name'] = new_user.DBfirst_name
         request.session['isloggedin'] = True
         request.session.modified = True
-        return redirect("/registration")
+        return redirect("/news")
 
 
 
