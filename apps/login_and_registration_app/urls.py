@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^investments$', views.investments),
     url(r'^investments/processing', views.investments_process),
     url(r'^chatroom/(?P<chatroomid>\d+)$', views.view_chatroom),
-    url(r'^find_chatroom$', views.find_chatroom),
+    url(r'^community$', views.community),
     # url(r'^user/chatroom/add', views.add_chatroom),
     # url(r'^user/chatroom/add/processing$' views.add_chatroom_process),
     # url(r'^logout$', views.logout),

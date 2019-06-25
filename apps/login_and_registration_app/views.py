@@ -91,8 +91,12 @@ def investments_process(request):
 
 
 # ------------------------------------------------------------------
-# add/find Chatrooms
+# Communities 
 # ------------------------------------------------------------------
+def community(request):
+    return render(request, "login_and_registration_app/community.html")
+
+
 def add_chatroom_process(request):
     return redirect("/chatroom/add")
 
@@ -101,9 +105,6 @@ def view_chatroom(request, chatroomid):
         'chatroomid': chatroomid,
     }
     return render(request, "login_and_registration_app/chatroom.html", context)
-
-def find_chatroom(request):
-    return render(request, "login_and_registration_app/community.html")
 
 def find_chatroom_process(request):
     return redirect("/find_chatroom/id")
