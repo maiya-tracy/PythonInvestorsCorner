@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^find_chatroom$', views.find_chatroom),
     # url(r'^user/chatroom/add', views.add_chatroom),
     # url(r'^user/chatroom/add/processing$' views.add_chatroom_process),
+    # url(r'^logout$', views.logout),
 ]
