@@ -2,14 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-
+        <!-- Meta data -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Style -->
+        {% load static %}
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
+        <title>Registration</title>
 <body>
 
     <body>
@@ -40,11 +42,11 @@
                                 <input type="submit" value="Join now!" class="btn btn-primary rounded-pill">
                                 <p>or Sign in with</p>
                                 <p>
-                                    <a href="###" class="btn btn-primary">f</a>
-                                    <a href="###" class="btn btn-danger">G</a>
-                                    <a href="###" class="btn btn-primary">Ln</a>
+                                  <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
+                                  <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google-plus.png' %}" alt="google login"></a>
+                                  <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
                                 </p>
-                                <p>do not have an account? <a href="/registration" class="text-danger">Sign up here!</a></p>
+                                <p>No account? <a href="/registration" class="text-danger">Sign up here!</a></p>
                             </div>
                     </form>
                 </div>

@@ -88,8 +88,20 @@ def investments_process(request):
 # ------------------------------------------------------------------
 # add/find Chatrooms
 # ------------------------------------------------------------------
-def add_chatroom(request):
-    return render(request, )
-
 def add_chatroom_process(request):
     return redirect("/user/chatroom/add")
+
+def find_chatroom(request):
+    return render(request, "login_and_registration_app/community.html")
+
+def find_chatroom_process(request):
+    return redirect("/user/chatroom/id")
+
+# ------------------------------------------------------------------
+# Login
+# ------------------------------------------------------------------
+
+def logout(request):
+    request.session.clear()
+    request.session['isloggedin'] = False
+    return redirect('/')
