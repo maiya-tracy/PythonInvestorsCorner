@@ -36,3 +36,10 @@
   transform: translate3d(-50%, -50%, 0);
   z-index: 1;
 }
+#auth-image {
+  height: 40%;
+  width: 35%
+}
+#bottom-nav {
+  background-color: black;
+}
