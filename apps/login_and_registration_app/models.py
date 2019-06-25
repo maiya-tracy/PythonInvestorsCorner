@@ -54,7 +54,7 @@ class User(models.Model):
 class ChatManager(models.Manager):
     def chatroom_validator():
         errors = {}
-    return errors
+        return errors
 
 class Chat(models.Model):
     DBtopic = models.CharField(max_length = 255)
@@ -68,7 +68,7 @@ class Chat(models.Model):
 class MessageManager(models.Manager):
     def message_validator():
         errors = {}
-    return errors
+        return errors
 
 class Message(models.Model):
     DBmessage = models.TextField()
@@ -81,7 +81,7 @@ class Message(models.Model):
 class StockManager(models.Manager):
     def stock_validator():
         errors = {}
-    return errors
+        return errors
 
 class Stock(models.Model):
     users = models.ManyToManyField(User, related_name = 'watched_stocks')
