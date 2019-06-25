@@ -9,5 +9,9 @@
     background-color:lightblue;
     border:black solid 2px;
 }
+.rounded-buttons {
+  border-radius: 20px;
+  margin: 5px 2px;
+}
 
 .media_icon
