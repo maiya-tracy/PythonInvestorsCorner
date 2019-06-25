@@ -82,20 +82,26 @@ def investments(request):
     return render(request, "login_and_registration_app/investments.html")
 
 def investments_process(request):
-    return redirect("/user/investments")
+    return redirect("/investments")
 
 
 # ------------------------------------------------------------------
 # add/find Chatrooms
 # ------------------------------------------------------------------
 def add_chatroom_process(request):
-    return redirect("/user/chatroom/add")
+    return redirect("/chatroom/add")
+
+def view_chatroom(request, chatroomid):
+    context = {
+        'chatroomid': chatroomid,
+    }
+    return render(request, "login_and_registration_app/chatroom.html", context)
 
 def find_chatroom(request):
     return render(request, "login_and_registration_app/community.html")
 
 def find_chatroom_process(request):
-    return redirect("/user/chatroom/id")
+    return redirect("/find_chatroom/id")
 
 # ------------------------------------------------------------------
 # Login
