@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib.auth.decorators import login_required
 from .models import User, Chat, Message, Stock
 from django.contrib import messages
 import bcrypt
@@ -20,6 +21,7 @@ from twilio.jwt.access_token.grants import (
 # ------------------------------------------------------------------
 # Home
 # ------------------------------------------------------------------
+
 
 def home(request):
     return render(request, "login_and_registration_app/home.html")
@@ -83,7 +85,7 @@ def login_process(request):
 # Login
 # ------------------------------------------------------------------
 
-def logout(request): 
+def logout(request):
     request.session['isloggedin'] = False   #Flip boolean to logout
     return redirect ("/")
 
@@ -95,7 +97,7 @@ def news(request):
     if request.session['isloggedin'] == False :
         print ("hack")
         return redirect("/")
-    else: 
+    else:
         return render(request, "login_and_registration_app/news.html")
 
 
