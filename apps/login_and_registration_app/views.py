@@ -16,7 +16,10 @@ from twilio.jwt.access_token.grants import (
     SyncGrant,
     ChatGrant
 )
-
+#Stocks 
+import pandas_datareader.data as web
+from datetime import datetime
+from datetime import timedelta
 
 # ------------------------------------------------------------------
 # Home
@@ -111,7 +114,26 @@ def investments(request):
         print ("hack")
         return redirect("/")
      else :
+        pull_investments(request)
         return render(request, "login_and_registration_app/investments.html")
+
+def pull_investments(request) :
+    # fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL"]
+    # start = datetime(2018,6,26)
+    # end = datetime.now()
+    # for x in fang :
+    #     dt = web.DataReader(x, 'yahoo', start, end)
+    #     name = x
+    #     current_date = 
+    start = datetime.now() - timedelta(days=365)
+    end = datetime.now()
+    f = web.DataReader('TSLA', 'yahoo', start, end, ).reset_index()
+    length = len(f) -1
+    print (f['Adj Close'][length])
+    print (f['Date'][length])
+
+
+
 
 def investments_process(request):
     if request.session['isloggedin'] == False :
