@@ -34,21 +34,23 @@
   <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
   <script>
     $(document).ready(function(){
-        $.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=4Z915SHVXI6MZ0PP", function(data){
-            console.log(data)
-            // var name = data.name
-            // var img = data.sprites.front_default;
-            // var type1 = data.types[0].type.name
-            // var height = data.height 
-            // var weight = data.weight 
-            // // var type2 = data.types[1].name 
-            // $(".dex").html(function(){
-            //     var logo = "<h1>"+name+"</h1><img src="+img+" alt='logo'>";
-            //     var stuff = "<h4>Types</h4><p>"+type1+"</p><h4>Height</h4><p>"+height+"</p><h4>Weight</h4><p>"+weight+"</p>"
-            //     console.log(stuff)
-            //     return [logo, stuff];
-            // })
+      var fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL"]
+      for( var i =0; i<5; i++){
+        console.log(fang[i])
+        $.get("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+fang[i]+"&apikey=4Z915SHVXI6MZ0PP", function(data_now){
+          console.log(data_now)
+          var symbol = data_now["Global Quote"]["01. symbol"]
+          var price = data_now["Global Quote"]["05. price"]
+          // console.log(symbol)
+          $(".fang-data").append(function(){
+            var name = "<h1>"+symbol+"</h1>"
+            var quote = "<p>"+price+"</p>"
+            console.log(quote)
+            return[name, quote] ;
+          })
         })
+      }
+
   })
   </script>
 
@@ -126,7 +128,7 @@
           <div class="row">
             <div class="col-sm-8">
               <div class="well">
-                <div class="data">
+                <div class="fang-data">
                   
                 </div>
                 <p>Text</p>
