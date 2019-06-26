@@ -81,10 +81,9 @@ def logout(request):
 # ------------------------------------------------------------------
 
 def news(request):
-    print (request.session['isloggedin'])
     if request.session['isloggedin'] == False :
         print ("hack")
-        return render(request, "login_and_registration_app/news.html")
+        return redirect("/")
         # return redirect("/")
     else: 
         return render(request, "login_and_registration_app/news.html")
