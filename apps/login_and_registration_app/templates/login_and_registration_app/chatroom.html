@@ -12,6 +12,9 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
   <title>Chatroom</title>
+  <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'login_and_registration_app/css/chatroom.css' %}">
 </head>
 
 <body>
@@ -23,6 +26,15 @@
       <div class="col-3 border border-success rounded">
         Chatroom page
       </div>
+      <section>
+        <div id="messages"></div>
+        <input id="chat-input" type="text" placeholder="say anything" autofocus />
+      </section>
+
+      <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
+      <script src="https://media.twiliocdn.com/sdk/js/chat/v3.0/twilio-chat.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script src="{% static 'login_and_registration_app/js/index.js' %}"></script>
     </div>
   </div>
 </body>

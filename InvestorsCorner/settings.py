@@ -119,3 +119,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+TWILIO_ACCT_SID = os.environ.get('TWILIO_ACCT_SID')
+TWILIO_CHAT_SID = os.environ.get('TWILIO_CHAT_SID')
+TWILIO_SYNC_SID = os.environ.get('TWILIO_SYNC_SID')
+TWILIO_API_SID = os.environ.get('TWILIO_API_SID')
+TWILIO_API_SECRET = os.environ.get('TWILIO_API_SECRET')
