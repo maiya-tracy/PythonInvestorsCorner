@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
-  <title>Registration</title>
+  <title>Login</title>
 
 <body>
 
@@ -47,6 +47,7 @@
                 <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
                 <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google-plus.png' %}" alt="google login"></a>
                 <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
+                <a href="{% url 'social:begin' 'github' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
               </p>
               <p>No account? <a href="/registration" class="text-danger">Sign up here!</a></p>
             </div>
