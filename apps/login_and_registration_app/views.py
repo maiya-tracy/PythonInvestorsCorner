@@ -95,7 +95,6 @@ def news(request):
     if request.session['isloggedin'] == False :
         print ("hack")
         return redirect("/")
-        # return redirect("/")
     else: 
         return render(request, "login_and_registration_app/news.html")
 
@@ -106,30 +105,54 @@ def news(request):
 # Investments
 # ------------------------------------------------------------------
 def investments(request):
-    return render(request, "login_and_registration_app/investments.html")
+     if request.session['isloggedin'] == False :
+        print ("hack")
+        return redirect("/")
+     else :
+        return render(request, "login_and_registration_app/investments.html")
 
 def investments_process(request):
-    return redirect("/investments")
+    if request.session['isloggedin'] == False :
+        print ("hack")
+        return redirect("/")
+    else :
+        return redirect("/investments")
 
 
 # ------------------------------------------------------------------
 # Communities
 # ------------------------------------------------------------------
 def community(request):
-    return render(request, "login_and_registration_app/community.html")
+    if request.session['isloggedin'] == False :
+        print ("hack")
+        return redirect("/")
+    else :
+        return render(request, "login_and_registration_app/community.html")
 
 
 def add_chatroom_process(request):
-    return redirect("/chatroom/add")
+    if request.session['isloggedin'] == False :
+        print ("hack")
+        return redirect("/")
+    else :
+        return redirect("/chatroom/add")
 
 def view_chatroom(request, chatroomid):
-    context = {
-        'chatroomid': chatroomid,
-    }
-    return render(request, "login_and_registration_app/chatroom.html", context)
+    if request.session['isloggedin'] == False :
+        print ("hack")
+        return redirect("/")
+    else :
+        context = {
+            'chatroomid': chatroomid,
+        }
+        return render(request, "login_and_registration_app/chatroom.html", context)
 
 def find_chatroom_process(request):
-    return redirect("/find_chatroom/id")
+    if request.session['isloggedin'] == False :
+        print ("hack")
+        return redirect("/")
+    else :
+        return redirect("/find_chatroom/id")
 
 # ------------------------------------------------------------------
 # Login
