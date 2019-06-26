@@ -46,7 +46,7 @@ $(function() {
   $.getJSON('/token', {
     device: 'browser'
   }, function(data) {
-
+    print("in fxn")
 
     // Initialize the Chat client
     Twilio.Chat.Client.create(data.token).then(client => {
@@ -56,6 +56,8 @@ $(function() {
 
     // Alert the user they have been assigned a random username
     username = data.identity;
+    print(username)
+    print(data.identity)
     print('You have been assigned a random username of: '
     + '<span class="me">' + username + '</span>', true);
 
@@ -121,4 +123,12 @@ $(function() {
       $input.val('');
     }
   });
+});
+
+
+chatClient.getPublicChannelDescriptors().then(function(paginator) {
+  for (i = 0; i < paginator.items.length; i++) {
+    const channel = paginator.items[i];
+    console.log('Channel: ' + channel.friendlyName);
+  }
 });
