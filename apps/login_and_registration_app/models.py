@@ -4,7 +4,7 @@ import bcrypt
 
 
 class UserManager(models.Manager):
-    def basic_validator(self, postData):
+    def basic_validator(self, postData):     #bug with Duong last name(says it contains numbers)
         errors = {}
         if len(postData['first_name']) < 2:
             errors['first_name'] = "Invalid First Name! - Must be 2 characters long"
@@ -17,8 +17,8 @@ class UserManager(models.Manager):
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if not EMAIL_REGEX.match(postData['email']):
             errors['email'] = "Invalid Email Address!"
-        emailAlreadyExists = User.objects.filter(DBemail=postData['email']).exists()
-        if (emailAlreadyExists):
+        emailAlreadyExists = User.objects.filter(DBemail=postData['email'])
+        if (len(emailAlreadyExists))>0:
             errors['email'] = "Email already in system"
         if len(postData['password']) < 8:
             errors['password'] = "Password must be at least 8 characters long"
@@ -27,9 +27,11 @@ class UserManager(models.Manager):
         return errors
     def login_validator(self, postData):
         errors = {}
+        print (postData)
         loginemailAlreadyExists = User.objects.filter(DBemail=postData['emailLogin']).exists()
-        if not (loginemailAlreadyExists):
+        if not loginemailAlreadyExists :
             errors['loginemail'] = "Failure to log in"
+            return errors
         user = User.objects.get(DBemail=postData["emailLogin"])
         pw_to_hash = postData["passwordLogin"]
         if not bcrypt.checkpw(pw_to_hash.encode(), user.DBpassword.encode()):

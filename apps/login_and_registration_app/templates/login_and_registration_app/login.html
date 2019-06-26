@@ -23,15 +23,15 @@
       <div class="row d-flex justify-content-center">
         <div class="col-3 border border-success rounded">
           <br>
-          <form action='/news'>
+          <form action='/login/processing' method="POST">
             {% csrf_token %}
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" name="email" class="form-control" placeholder="Email">
+              <label for="emailLogin">Email</label>
+              <input type="email" name="emailLogin" class="form-control" placeholder="Email">
             </div>
             <div class="form-group">
-              <label for="Password">Password</label>
-              <input type="password" name="password" class="form-control" placeholder="Password">
+              <label for="passwordLogin">Password</label>
+              <input type="password" name="passwordLogin" class="form-control" placeholder="Password">
               {% if messages %}
               {% for message in messages %}
               {% if message.extra_tags == "login_credentials" %}
