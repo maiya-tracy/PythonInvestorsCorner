@@ -195,7 +195,6 @@ def logout(request):
 
 def token(request):
     fake = Factory.create()
-    print(fake)
     return generateToken(fake.user_name())
 
 def generateToken(identity):
@@ -208,6 +207,10 @@ def generateToken(identity):
 
     # Create access token with credentials
     token = AccessToken(account_sid, api_sid, api_secret, identity=identity)
+
+    print("*********")
+    print(identity)
+    print(token)
 
     # Create a Sync grant and add to token
     if sync_service_sid:
