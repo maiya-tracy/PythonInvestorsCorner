@@ -70,7 +70,7 @@ def login_process(request):
         for key, value in errors.items():
             messages.error(request, value, extra_tags = key)
         messages.error(request, request.POST["emailLogin"], "holdLoginEmail")
-        return redirect('/')
+        return redirect('/login')
     else:
         current_user = User.objects.get(DBemail = request.POST['emailLogin'])
         request.session['userid'] = current_user.id
@@ -79,14 +79,25 @@ def login_process(request):
         return redirect("/news")
 
 
+# ------------------------------------------------------------------
+# Login
+# ------------------------------------------------------------------
 
+def logout(request): 
+    request.session['isloggedin'] = False   #Flip boolean to logout
+    return redirect ("/")
 
 # ------------------------------------------------------------------
 # News
 # ------------------------------------------------------------------
 
 def news(request):
-    return render(request, "login_and_registration_app/news.html")
+    if request.session['isloggedin'] == False :
+        print ("hack")
+        return redirect("/")
+        # return redirect("/")
+    else: 
+        return render(request, "login_and_registration_app/news.html")
 
 
 
