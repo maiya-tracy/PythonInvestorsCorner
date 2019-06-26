@@ -32,26 +32,9 @@
       }
     }
   </style>
-  <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-  <script>
-    $(document).ready(function(){
-        $.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=4Z915SHVXI6MZ0PP", function(data){
-            console.log(data)
-            // var name = data.name
-            // var img = data.sprites.front_default;
-            // var type1 = data.types[0].type.name
-            // var height = data.height
-            // var weight = data.weight
-            // // var type2 = data.types[1].name
-            // $(".dex").html(function(){
-            //     var logo = "<h1>"+name+"</h1><img src="+img+" alt='logo'>";
-            //     var stuff = "<h4>Types</h4><p>"+type1+"</p><h4>Height</h4><p>"+height+"</p><h4>Weight</h4><p>"+weight+"</p>"
-            //     console.log(stuff)
-            //     return [logo, stuff];
-            // })
-        })
-  })
-  </script>
+  <!-- <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
+  <script src="{% static 'login_and_registration_app/js/stock_data.js' %}"></script>
+  
 
 </head>
 
@@ -127,8 +110,8 @@
           <div class="row">
             <div class="col-sm-8">
               <div class="well">
-                <div class="data">
-
+                <div class="fang-data">
+                  
                 </div>
                 <p>Text</p>
               </div>
