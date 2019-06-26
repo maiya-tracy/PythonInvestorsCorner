@@ -149,13 +149,17 @@ base = environ.Path(__file__) - 2 # two folders back (/a/b/ - 2 = /)
 environ.Env.read_env(env_file=base('.env')) # reading .env file
 
 TWILIO_ACCT_SID = os.environ.get('TWILIO_ACCT_SID')
+TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCT_SID')
+print(TWILIO_ACCOUNT_SID)
+print("************")
 TWILIO_CHAT_SID = os.environ.get('TWILIO_CHAT_SID')
+TWILIO_IPM_SERVICE_SID = os.environ.get('TWILIO_CHAT_SID')
+TWILIO_CHAT_SERVICE_SID = os.environ.get('TWILIO_CHAT_SID')
 TWILIO_SYNC_SID = os.environ.get('TWILIO_SYNC_SID')
 TWILIO_API_SID = os.environ.get('TWILIO_API_SID')
+TWILIO_API_KEY = os.environ.get('TWILIO_API_SID')
 TWILIO_API_SECRET = env('TWILIO_API_SECRET')
 # SOCIAL_AUTH_GITHUB_KEY = 'b441086fd56d326a86cf'
 SOCIAL_AUTH_GITHUB_KEY = env('SOCIAL_AUTH_GITHUB_KEY')
-print(SOCIAL_AUTH_GITHUB_KEY)
-print("************")
 # SOCIAL_AUTH_GITHUB_SECRET = '79f3f1c74288ca1461f822ac9b326177335675fd'
 SOCIAL_AUTH_GITHUB_SECRET = env('SOCIAL_AUTH_GITHUB_SECRET')
