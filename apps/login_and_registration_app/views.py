@@ -21,10 +21,10 @@ import pandas_datareader.data as web
 from datetime import datetime
 from datetime import timedelta
 
+
 # ------------------------------------------------------------------
 # Home
 # ------------------------------------------------------------------
-
 
 def home(request):
 	return render(request, "login_and_registration_app/home.html")
@@ -33,10 +33,8 @@ def home(request):
 # ------------------------------------------------------------------
 # Registration
 # ------------------------------------------------------------------
-
 def registration(request):
 	return render(request, "login_and_registration_app/registration.html")
-
 
 def registration_process(request):
 	errors = User.objects.basic_validator(request.POST)
@@ -63,10 +61,8 @@ def registration_process(request):
 # ------------------------------------------------------------------
 # Login
 # ------------------------------------------------------------------
-
 def login(request):
 	return render(request, "login_and_registration_app/login.html")
-
 
 def login_process(request):
 	errors = User.objects.login_validator(request.POST)
@@ -84,18 +80,17 @@ def login_process(request):
 
 
 # ------------------------------------------------------------------
-# Login
+# Logout
 # ------------------------------------------------------------------
 
 def logout(request):
 	request.session['isloggedin'] = False  # Flip boolean to logout
 	return redirect("/")
 
+
 # ------------------------------------------------------------------
 # News
 # ------------------------------------------------------------------
-
-
 def news(request):
 	if request.session['isloggedin'] == False:
 		print("hack")
@@ -120,6 +115,12 @@ def investments(request):
 		return render(request, "login_and_registration_app/investments.html", context)
 
 
+# ------------------------------------------------------------------
+# Paper Stocks, "feature is currently unavailable"
+# ------------------------------------------------------------------
+def paper_stocks(request):
+    return render(request, "login_and_registration_app/paper_stocks.html")
+
 
 # ------------------------------------------------------------------
 # Pull Yahoo Finance Data for FAANG Stocks
@@ -136,7 +137,6 @@ def pull_investments(request) :
         new_stock = Stock.objects.create(symbol=x)
         new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
     request.session['grabbed-stocks'] = True
-
 
 
 def investments_process(request):

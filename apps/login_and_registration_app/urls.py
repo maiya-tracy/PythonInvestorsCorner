@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^news$', views.news, name='news'),
     url(r'^investments$', views.investments),
     url(r'^investments/processing', views.investments_process),
+    url(r'^paperstocks$', views.paper_stocks),
     url(r'^chatroom/(?P<chatroomid>\d+)$', views.view_chatroom),
     url(r'^token', views.token, name='token'),
     url(r'^communities$', views.community),
