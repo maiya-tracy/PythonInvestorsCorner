@@ -88,11 +88,12 @@
                             <input type="submit" value="Join now!" class="btn btn-primary rounded-pill">
                             <p>or Register with</p>
                             <div>
-                                <p>
-                                    <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
-                                    <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google-plus.png' %}" alt="google login"></a>
-                                    <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
-                                </p>
+                              <p>
+                                <a href="{% url 'social:begin' 'linkedin' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
+                                <a href="{% url 'social:begin' 'google' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google.png' %}" alt="google login"></a>
+                                <a href="{% url 'social:begin' 'facebook' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
+                                <a href="{% url 'social:begin' 'github' %}?next=news"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
+                              </p>
                             </div>
 
                             <p>Have an account? <a href="/login" class="text-danger">Sign in here!</a></p>

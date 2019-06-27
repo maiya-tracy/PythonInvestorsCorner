@@ -9,9 +9,7 @@ $(function() {
   // will have in this sample app
   var generalChannel;
 
-  // The server will assign the client a random username - store that value
-  // here
-  var username;
+  var username = session['username'];
 
   // Helper function to print info messages to the chat window
   function print(infoMessage, asHtml) {

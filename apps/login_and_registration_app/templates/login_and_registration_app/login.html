@@ -72,41 +72,10 @@
               <input type="submit" value="Log in!" class="btn btn-primary rounded-pill">
               <p>or Sign in with</p>
               <p>
-
-
-                <div class="g-signin2" data-width='40' data-height='40' data-longtitle='true'><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></div>
-                <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
-                <script>
-                  function onSignIn(googleUser) {
-                    // Useful data for your client-side scripts:
-                    var profile = googleUser.getBasicProfile();
-                    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-                    console.log('Full Name: ' + profile.getName());
-                    console.log('Given Name: ' + profile.getGivenName());
-                    console.log('Family Name: ' + profile.getFamilyName());
-                    console.log("Image URL: " + profile.getImageUrl());
-                    console.log("Email: " + profile.getEmail());
-
-                    // The ID token you need to pass to your backend:
-                    var id_token = googleUser.getAuthResponse().id_token;
-                    console.log("ID Token: " + id_token);
-                  }
-                </script>
-
-                <a href="#" onclick="signOut();"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google-plus.png' %}" alt="facebook login">Log Out</a>
-                <script>
-                  function signOut() {
-                    var auth2 = gapi.auth2.getAuthInstance();
-                    auth2.signOut().then(function() {
-                      console.log('User signed out.');
-                    });
-                  }
-                </script>
-
-                </html>
-                <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
+                <a href="{% url 'social:begin' 'linkedin' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
+                <a href="{% url 'social:begin' 'google' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google.png' %}" alt="google login"></a>
                 <a href="{% url 'social:begin' 'facebook' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
-                <a href="{% url 'social:begin' 'github' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
+                <a href="{% url 'social:begin' 'github' %}?next=news"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
               </p>
               <p>No account? <a href="/registration" class="text-danger">Sign up here!</a></p>
             </div>
