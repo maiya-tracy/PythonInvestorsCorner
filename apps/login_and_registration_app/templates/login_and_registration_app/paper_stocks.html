@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
     <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
     <!-- end of custom links -->
-    <title>Home</title>
+    <title>Paper stocks</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
             <!-- mt-auto mb-auto ml-auto mr-auto -->
             <div class="col top-nav-color d-flex bd-highlight mt-auto mb-auto">
                 <div class="p-2 flex-grow-1 bd-highlight">
-                    <p class="h2 d-inline text-center text-light ml-2">Home</p>
+                    <p class="h2 d-inline text-center text-light ml-2">Paper stocks</p>
                 </div>
                 <div class="p-2 bd-highlight">
                     <form action="">
@@ -43,7 +43,6 @@
         <div class="row">
             <div class="col-2 fill-height side-nav-color">
                 <div class="mt-3">
-                    <!-- p tags will be replaces with img tags with responsive icons-->
                     <ul class="nav navbar-nav ml-2 pl-2">
                         <li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img"
                                     src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
@@ -87,45 +86,47 @@
                     </ul>
                 </div>
                 <div class="border-top border-light mt-3">
-                        <input type="text" class="mt-4 col-12 border rounded-pill text-center mb-1" placeholder="Search">
-                        <div class="col overflow-auto" style="height:25vh;">
-                            <ul class="nav navbar-nav">
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                            </ul>
-                        </div>
+                    <input type="text" class="mt-4 col-12 border rounded-pill text-center mb-1" placeholder="Search">
+                    <div class="col overflow-auto" style="height:25vh;">
+                        <ul class="nav navbar-nav">
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                        </ul>
                     </div>
                 </div>
+            </div>
             <div class="container">
                 <div class="d-inline">
-                    <p class="h4 ml-3 mt-4">News Feed</p>
-                    <p class="ml-3"></p>
+                    <p class="h4 ml-3 mt-4">Paper stocks</p>
+                    <p class="ml-3">Hi! Paper stock is currently unconstruction. Sorry!</p>
+                    <img class="pl-5 ml-5"
+                        src="{% static 'login_and_registration_app/images/under_construction.jpg' %}" />
                 </div>
             </div>
         </div>
@@ -140,6 +141,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 </body>
+
 </html>
 
 <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->

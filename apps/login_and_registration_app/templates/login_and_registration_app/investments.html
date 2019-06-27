@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,46 +13,7 @@
     <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
     <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
     <!-- end of custom links -->
-    <title>Document</title>
-
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-
-        .fill-height {
-            height: 91.5vh;
-        }
-
-        /* On small screens, set height to 'auto' for the grid */
-        @media screen and (max-width: 767px) {
-            .row.content {
-                height: auto;
-            }
-        }
-
-        /* <!-- <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
-    <!-- <script src="{% static 'login_and_registration_app/js/stock_data.js' %}"></script>            Jack- stock data jquery-->             */
-
-
-        .fill-width {
-            width: 100vw;
-        }
-
-        .top-nav-color {
-            background-color: #7ADA7A;
-        }
-
-        .side-nav-color {
-            background-color: #707070;
-        }
-
-        .nav-msg-img {
-            height: 5vh;
-            width: auto;
-        }
-    </style>
+    <title>Investments</title>
 </head>
 
 <body>
@@ -60,71 +21,127 @@
         <div class="row top-nav-color">
             <div class="col-2 custom-height side-nav-color m">
                 <div class="">
-                    <p class="h1 text-center mt-3 ">Logo</p>
+                    <p class="h1 text-center mt-3 text-light">Logo</p>
                 </div>
             </div>
-
             <!-- mt-auto mb-auto ml-auto mr-auto -->
             <div class="col top-nav-color d-flex bd-highlight mt-auto mb-auto">
                 <div class="p-2 flex-grow-1 bd-highlight">
-                    <p class="h2 d-inline text-center text-light">News Feed</p>
+                    <p class="h2 d-inline text-center text-light ml-2">Investments</p>
                 </div>
                 <div class="p-2 bd-highlight">
                     <form action="">
-                        <input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center">
+                        <input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center"
+                            placeholder="Search">
                     </form>
                 </div>
                 <div class="p-2 bd-highlight">
-                    <a href="###" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a>
-                    <!-- needs link! -->
+                    <a href="/logout" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-2 fill-height side-nav-color">
-                <div class="mt-5">
+                <div class="mt-3">
                     <!-- p tags will be replaces with img tags with responsive icons-->
                     <ul class="nav navbar-nav ml-2 pl-2">
-                        <li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/investments"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a></li>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/paperstocks"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/stock.png' %}" /> Paper Stocks</a></li>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/friends"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a></li>
-                        <li class="mt-2"><a class="text-decoration-none text-light" href="/find_communities"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/community.png' %}"> Find Communities</a>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/communities"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/community.png' %}" /> Your Communities</a></li>
-                        <li class="ml-5"><a class="text-decoration-none text-light " href="/chatroom/1">Chatroom 1</a>
+                        <li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img"
+                                    src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/investments"><img
+                                    class="nav-msg-img"
+                                    src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a>
                         </li>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/paperstocks"><img
+                                    class="nav-msg-img"
+                                    src="{% static 'login_and_registration_app/images/paper.png' %}" /> Paper Stocks</a>
                         </li>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/friends"><img
+                                    class="nav-msg-img"
+                                    src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a>
+                        </li>
+                        <li class="mt-2"><a class="text-decoration-none text-light" href="/find_communities"><img
+                                    class="nav-msg-img"
+                                    src="{% static 'login_and_registration_app/images/community.png' %}"> Find
+                                Communities</a>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/communities"><img
+                                    class="nav-msg-img"
+                                    src="{% static 'login_and_registration_app/images/group.png' %}" /> Your
+                                Communities</a></li>
                     </ul>
-
-                </div>
-                <div class=" border-top border-dark mt-5">
-                    <input type="text" class="mt-5 mb-3 col-12 border rounded-pill text-center">
-                    <ul class="nav navbar-nav ml-2 pl-2">
-                        <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg preview</a></li>
-                    </ul>
-
-                </div> <!-- p tags will be replaces with img tags-->
-            </div>
-            <div class="col overflow-auto mt-5" style="height:80vh">
-                <p class="ml-2 scrollspy overflow-auto">
-                    <div class="well">
-                        <h4>FAANG Stocks</h4>
-                        <p>Up to date stock prices on FAANG stocks for all users</p>
+                    <div class="col overflow-auto mt-3" style="height:11vh;">
+                        <ul class="nav navbar-nav">
+                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+                                    href="/chatroom/1">Chatroom1</a>
+                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+                                    href="/chatroom/1">Chatroom2</a>
+                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+                                    href="/chatroom/1">Chatroom3</a>
+                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+                                    href="/chatroom/1">Chatroom4</a>
+                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+                                    href="/chatroom/1">Chatroom5</a>
+                        </ul>
                     </div>
-
-                    {% for stock in stocks.all %}
-                    <div class="row">
-                        <div class=" col-2 border rounded d-inline m-2 text-center pt-4 pb-4">
-                            <div class="">
-                                <h2>{{ stock.symbol }}</h2>
-                                <p class="text-success">Current Price : ${{ stock.prices.last.price}}</p>
-                                <div class="fang-data"></div>
+                    </li>
+                    </li>
+                    </ul>
+                </div>
+                <div class="border-top border-light mt-3">
+                    <input type="text" class="mt-4 col-12 border rounded-pill text-center mb-1" placeholder="Search">
+                    <div class="col overflow-auto" style="height:25vh;">
+                        <ul class="nav navbar-nav">
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                        class="nav-msg-img"
+                                        src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                    preview</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col ml-5">
+                <div class="d-inline">
+                    <p class="h4 ml-3 mt-4">FAANG Stocks</p>
+                    <p class="ml-3">Up to date stock prices on FAANG stocks for all users</p>
+                </div>
+                <div class="col overflow-auto mt-2" style="height:70vh">
+                    <div class="ml-1 scrollspy overflow-auto">
+                        <div class="col overflow-auto" style="height:80vh">
+                            <div class="row">
+                                {% for stock in stocks.all %}
+                                <div class="col-2 border border-dark d-inline pr-1 pl-1 mr-4 mt-3 text-center pt-1 pb-4 bg-light">
+                                    <br>
+                                    <p class="h2 d-inline">{{ stock.symbol }}</p>
+                                    <p class="text-success pb-5">Current Price : ${{ stock.prices.last.price}}</p>
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
-                </p>
+                </div>
             </div>
         </div>
     </div>
@@ -138,10 +155,11 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 </body>
-
 </html>
 
 <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
 <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
 <!-- <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
 <!-- <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+<!-- <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
