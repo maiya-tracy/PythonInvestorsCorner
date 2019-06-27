@@ -23,6 +23,7 @@ from twilio.jwt.access_token.grants import (
 )
 # Stocks
 import pandas_datareader.data as web
+from pandas_datareader._utils import RemoteDataError as error #handle error for non existent stock
 from datetime import datetime
 from datetime import timedelta
 
@@ -197,19 +198,23 @@ def paper_stocks(request):
 # Pull Yahoo Finance Data for FAANG Stocks
 # ------------------------------------------------------------------
 def yahoo_pull_API(request, symbol) :
-	start = datetime.now() - timedelta(days=365)
-	end = datetime.now()
-	stock_exists = Stock.objects.filter(symbol=symbol).exists()
-	if not stock_exists :
-		f = web.DataReader(symbol, 'yahoo', start, end, ).reset_index()
-		length = len(f) - 1
-		adj_price = f['Adj Close'][length]
-		date = f['Date'][length]
-		new_stock = Stock.objects.create(symbol=symbol)
-		new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
-		return(new_stock)
-	else :
-		return False
+    start = datetime.now() - timedelta(days=365)
+    end = datetime.now()
+    stock_exists = Stock.objects.filter(symbol=symbol).exists() #logic to not repeat stocks
+    if not stock_exists :
+        try :            #Validation for non existent stocks
+            f = web.DataReader(symbol, 'yahoo', start, end, ).reset_index()
+        except error :
+            print ("ERROR")
+            return False
+        length = len(f) - 1
+        adj_price = f['Adj Close'][length]
+        date = f['Date'][length]
+        new_stock = Stock.objects.create(symbol=symbol)
+        new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
+        return(new_stock)
+    else :
+        return False
 
 def pull_investments(request):
 	fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
