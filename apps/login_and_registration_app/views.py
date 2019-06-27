@@ -18,6 +18,7 @@ from twilio.jwt.access_token.grants import (
 )
 # Stocks
 import pandas_datareader.data as web
+from pandas_datareader._utils import RemoteDataError as error #handle error for non existent stock 
 from datetime import datetime
 from datetime import timedelta
 
@@ -141,9 +142,13 @@ def paper_stocks(request):
 def yahoo_pull_API(request, symbol) :
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
-    stock_exists = Stock.objects.filter(symbol=symbol).exists()
+    stock_exists = Stock.objects.filter(symbol=symbol).exists() #logic to not repeat stocks 
     if not stock_exists :
-        f = web.DataReader(symbol, 'yahoo', start, end, ).reset_index()
+        try :            #Validation for non existent stocks
+            f = web.DataReader(symbol, 'yahoo', start, end, ).reset_index()
+        except error :
+            print ("ERROR")
+            return False
         length = len(f) - 1
         adj_price = f['Adj Close'][length]
         date = f['Date'][length]
