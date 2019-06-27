@@ -2,128 +2,146 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <!-- <link href="css/our_style.css" rel="stylesheet"> -->
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
-  <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
-  <title>Investments</title>
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {
-      height: 550px
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Boot strap link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- custom css links -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
+    <!-- end of custom links -->
+    <title>Document</title>
 
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
 
-    /* On small screens, set height to 'auto' for the grid */
-    @media screen and (max-width: 767px) {
-      .row.content {
-        height: auto;
-      }
-    }
-  </style>
-  <!-- <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
-  <!-- <script src="{% static 'login_and_registration_app/js/stock_data.js' %}"></script>            Jack- stock data jquery-->            
-  
+        .fill-height {
+            height: 93vh;
+        }
 
+        /* On small screens, set height to 'auto' for the grid */
+        @media screen and (max-width: 767px) {
+            .row.content {
+                height: auto;
+            }
+        }
+
+        /* <!-- <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
+    <!-- <script src="{% static 'login_and_registration_app/js/stock_data.js' %}"></script>            Jack- stock data jquery-->             */
+
+
+        .fill-width {
+            width: 100vw;
+        }
+
+        .top-nav-color {
+            background-color: #7ADA7A;
+        }
+
+        .side-nav-color {
+            background-color: #707070;
+        }
+
+        .nav-msg-img {
+            height: 5vh;
+            width: auto;
+        }
+    </style>
 </head>
 
-
 <body>
-  <div class="container">
-    <div class="col col-3">
-      <nav class="navbar navbar-inverse visible-xs">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Logo</a>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="/news">Home</a></li>
-              <li><a href="/investments">Investments</a></li>
-              <li><a href="/paperstocks">Paper Stocks</a></li>
-              <li><a href="/friends">Friends</a></li>
-              <li><a href="/communities">Communities</a></li>
-              <li><a href="/chatroom/1">Chatroom 1</a></li>
-              <li><a href="/find_communities">Find Communities</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <div class="col container-fluid col-9">
-      <div class="row content">
-        <div class="col-sm-3 sidenav hidden-xs">
-          <h2>Logo</h2>
-          <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="/news">Home</a></li>
-            <li><a href="/investments">Investments</a></li>
-            <li><a href="/paperstocks">Paper Stocks</a></li>
-            <li><a href="/friends">Friends</a></li>
-            <li><a href="/communities">Communities</a></li>
-            <li><a href="/chatroom/1">Chatroom 1</a></li>
-            <li><a href="/find_communities">Find Communities</a></li>
-          </ul><br>
-        </div>
-        <br>
-
-        <div class="col-sm-9 " >
-          <nav class="navbar navbar-inverse" >
-            <div class="container-fluid" id="theme-color">
-              <div class="navbar-header text-dark">
-                  <h1 class="mt-0">Investments</h1>
-                <!-- <a class="navbar-brand text-dark" href="#">Investments</a> -->
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
-              <form class="navbar-form navbar-right" action="/action_page.html">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Search">
+    <div class="container-fluid">
+        <div class="row top-nav-color">
+            <div class="col-2 custom-height side-nav-color m">
+                <div class="">
+                    <p class="h1 text-center mt-3 ">Logo</p>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-              </form>
-            </ul>
             </div>
-          </nav>
-          <div class="well">
-            <h4>Dashboard</h4>
-            <p>Some text..</p>
-          </div>
 
-
-          {% for stock in stocks.all %}
-          <div class="row">
-            <div class="col-sm-8">
-              <div class="well">
-                  <h2>{{ stock.symbol }}</h2>
-                  <p>{{ stock.prices.last.price}}</p>
-                  <div class="fang-data"></div>
+            <!-- mt-auto mb-auto ml-auto mr-auto -->
+            <div class="col top-nav-color d-flex bd-highlight mt-auto mb-auto">
+                <div class="p-2 flex-grow-1 bd-highlight">
+                    <p class="h2 d-inline text-center text-light">News Feed</p>
                 </div>
-              </div>
+                <div class="p-2 bd-highlight">
+                    <form action="">
+                        <input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center">
+                    </form>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a href="###" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a>
+                    <!-- needs link! -->
+                </div>
             </div>
-            {% endfor %}
 
-          
         </div>
-      </div>
+        <div class="row">
+            <div class="col-2 fill-height side-nav-color">
+                <div class="mt-5">
+                    <!-- p tags will be replaces with img tags with responsive icons-->
+                    <ul class="nav navbar-nav ml-2 pl-2">
+                        <li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
+                        <li><a class="text-decoration-none text-light " href="/investments"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a></li>
+                        <li><a class="text-decoration-none text-light " href="/paperstocks"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> Paper Stocks</a></li>
+                        <li><a class="text-decoration-none text-light " href="/friends"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a></li>
+                        <li><a class="text-decoration-none text-light " href="/communities"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> Communities</a></li>
+                        <li class="ml-5"><a class="text-decoration-none text-light " href="/chatroom/1">Chatroom 1</a>
+                        </li>
+                        <li><a class="text-decoration-none text-light mt-2" href="/find_communities">Find Communities</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class=" border-top border-dark mt-5">
+                    <input type="text" class="mt-5 mb-3 col-12 border rounded-pill text-center">
+                    <ul class="nav navbar-nav ml-2 pl-2">
+                        <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg preview</a></li>
+                    </ul>
+
+                </div> <!-- p tags will be replaces with img tags-->
+            </div>
+            <div class="col overflow-auto mt-5" style="height:80vh">
+                <p class="ml-2 scrollspy overflow-auto">
+                    <div class="well">
+                        <h4>FAANG Stocks</h4>
+                        <p>Up to date stock prices on FAANG stocks for all users</p>
+                    </div>
+
+                    {% for stock in stocks.all %}
+                    <div class="row">
+                        <div class="col-sm-2 border rounded d-inline">
+                            <div class="well">
+                                <h2>{{ stock.symbol }}</h2>
+                                <p class="text-success">Current Price : ${{ stock.prices.last.price}}</p>
+                                <div class="fang-data"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
-
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
+
+</html>
+
+<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+<!-- <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+<!-- <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
