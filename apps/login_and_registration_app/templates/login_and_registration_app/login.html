@@ -8,8 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Style -->
   {% load static %}
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
   <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
   <title>Login</title>
@@ -17,6 +16,29 @@
 <body>
 
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '331708461096013',
+          xfbml: true,
+          version: 'v3.3'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=331708461096013&autoLogAppEvents=1"></script>
     <div class="container-fluid">
       <div class="row justify-content-center">
         <h1>Bringing investors together</h1>
@@ -45,7 +67,7 @@
               <input type="submit" value="Log in!" class="btn btn-primary rounded-pill">
               <p>or Sign in with</p>
               <p>
-                <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
+                <div class="fb-login-button" data-width="" data-size="small" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
                 <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google-plus.png' %}" alt="google login"></a>
                 <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
                 <a href="{% url 'social:begin' 'github' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
