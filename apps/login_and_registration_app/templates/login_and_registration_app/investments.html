@@ -107,21 +107,19 @@
           </div>
 
 
+          {% for stock in stocks.all %}
           <div class="row">
             <div class="col-sm-8">
               <div class="well">
-                {% for stock in stocks.all %}
                   <h2>{{ stock.symbol }}</h2>
                   <p>{{ stock.prices.last.price}}</p>
-                {% endfor %}
-                <div class="fang-data">
-                  
+                  <div class="fang-data"></div>
                 </div>
-                <p>Text</p>
               </div>
             </div>
+            {% endfor %}
 
-          </div>
+          
         </div>
       </div>
     </div>
