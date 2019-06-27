@@ -22,7 +22,7 @@
         }
 
         .fill-height {
-            height: 93vh;
+            height: 91.5vh;
         }
 
         /* On small screens, set height to 'auto' for the grid */
@@ -87,13 +87,13 @@
                     <!-- p tags will be replaces with img tags with responsive icons-->
                     <ul class="nav navbar-nav ml-2 pl-2">
                         <li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
-                        <li><a class="text-decoration-none text-light " href="/investments"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a></li>
-                        <li><a class="text-decoration-none text-light " href="/paperstocks"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> Paper Stocks</a></li>
-                        <li><a class="text-decoration-none text-light " href="/friends"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a></li>
-                        <li><a class="text-decoration-none text-light " href="/communities"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> Communities</a></li>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/investments"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a></li>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/paperstocks"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/stock.png' %}" /> Paper Stocks</a></li>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/friends"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a></li>
+                        <li class="mt-2"><a class="text-decoration-none text-light" href="/find_communities"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/community.png' %}"> Find Communities</a>
+                        <li class="mt-2"><a class="text-decoration-none text-light " href="/communities"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/community.png' %}" /> Your Communities</a></li>
                         <li class="ml-5"><a class="text-decoration-none text-light " href="/chatroom/1">Chatroom 1</a>
                         </li>
-                        <li><a class="text-decoration-none text-light mt-2" href="/find_communities">Find Communities</a>
                         </li>
                     </ul>
 
@@ -115,8 +115,8 @@
 
                     {% for stock in stocks.all %}
                     <div class="row">
-                        <div class="col-sm-2 border rounded d-inline">
-                            <div class="well">
+                        <div class=" col-2 border rounded d-inline m-2 text-center pt-4 pb-4">
+                            <div class="">
                                 <h2>{{ stock.symbol }}</h2>
                                 <p class="text-success">Current Price : ${{ stock.prices.last.price}}</p>
                                 <div class="fang-data"></div>
