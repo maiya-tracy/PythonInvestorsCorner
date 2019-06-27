@@ -87,6 +87,18 @@ class StockManager(models.Manager):
 
 class Stock(models.Model):
     users = models.ManyToManyField(User, related_name = 'watched_stocks')
+    symbol = models.CharField(max_length=10)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = StockManager()
+
+class Stock_Price(models.Model) :
+    stock = models.ForeignKey(Stock, related_name='prices')
+    date = models.DateField()
+    price = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+
+

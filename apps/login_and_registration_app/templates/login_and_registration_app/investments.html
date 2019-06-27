@@ -33,7 +33,7 @@
     }
   </style>
   <!-- <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
-  <script src="{% static 'login_and_registration_app/js/stock_data.js' %}"></script>
+  <!-- <script src="{% static 'login_and_registration_app/js/stock_data.js' %}"></script>            Jack- stock data jquery-->            
   
 
 </head>
@@ -110,6 +110,10 @@
           <div class="row">
             <div class="col-sm-8">
               <div class="well">
+                {% for stock in stocks.all %}
+                  <h2>{{ stock.symbol }}</h2>
+                  <p>{{ stock.prices.last.price}}</p>
+                {% endfor %}
                 <div class="fang-data">
                   
                 </div>

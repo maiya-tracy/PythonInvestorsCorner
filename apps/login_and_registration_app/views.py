@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.decorators import login_required
-from .models import User, Chat, Message, Stock
+from .models import User, Chat, Message, Stock, Stock_Price
 from django.contrib import messages
 import bcrypt
 import datetime
@@ -16,7 +16,10 @@ from twilio.jwt.access_token.grants import (
     SyncGrant,
     ChatGrant
 )
-
+#Stocks
+import pandas_datareader.data as web
+from datetime import datetime
+from datetime import timedelta
 
 # ------------------------------------------------------------------
 # Home
@@ -108,8 +111,45 @@ def investments(request):
     if request.session['isloggedin'] == False:
         print("hack")
         return redirect("/")
-    else:
-        return render(request, "login_and_registration_app/investments.html")
+     else :
+        if "grabbed-stocks" not in request.session :
+            pull_investments(request)
+        context = {
+            "stocks" : Stock.objects.all(),
+        }
+        return render(request, "login_and_registration_app/investments.html", context)
+
+
+
+# ------------------------------------------------------------------
+# Pull Yahoo Finance Data for FAANG Stocks
+# ------------------------------------------------------------------
+def pull_investments(request) :
+    # start = datetime(2018,6,26)
+    # end = datetime.now()
+    # for x in fang :
+    #     dt = web.DataReader(x, 'yahoo', start, end)
+    #     name = x
+    #     current_date =
+    fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
+    start = datetime.now() - timedelta(days=365)
+    end = datetime.now()
+    for x in fang :
+        f = web.DataReader(x, 'yahoo', start, end, ).reset_index()
+        length = len(f) -1
+        adj_price = f['Adj Close'][length]
+        date = f['Date'][length]
+        # print (f['Adj Close'][length])
+        # print (f['Date'][length])
+        ## Need to fix migrations to troubleshoot database
+        new_stock = Stock.objects.create(symbol=x)
+        new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
+        # print(new_stock.symbol)
+    request.session['grabbed-stocks'] = True
+
+
+
+
 
 
 def investments_process(request):
