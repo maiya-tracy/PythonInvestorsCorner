@@ -111,12 +111,23 @@ def investments(request):
     else:
         # if "grabbed-stocks" not in request.session :
         pull_investments(request)
+        user = User.objects.get(id=request.session["userid"])
         context = {
             "stocks": Stock.objects.all(),
+            "your_stocks" :user.watched_stocks.all()
         }
         return render(request, "login_and_registration_app/investments.html", context)
 
-
+# Seach Bar Stock Lookup 
+def add_stock(request) :
+    if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
+        print("hack")
+        return redirect("/")
+    else:
+        user = User.objects.get(id=request.session["userid"])
+        new_stock = yahoo_pull_API(request, request.POST["symbol"])
+        user.watched_stocks.add(new_stock)  #add to user
+        return redirect("/investments")
 # ------------------------------------------------------------------
 # Paper Stocks, "feature is currently unavailable"
 # ------------------------------------------------------------------
@@ -127,30 +138,42 @@ def paper_stocks(request):
 # ------------------------------------------------------------------
 # Pull Yahoo Finance Data for FAANG Stocks
 # ------------------------------------------------------------------
+def yahoo_pull_API(request, symbol) :
+    start = datetime.now() - timedelta(days=365)
+    end = datetime.now()
+    stock_exists = Stock.objects.filter(symbol=symbol).exists()
+    if not stock_exists :
+        f = web.DataReader(symbol, 'yahoo', start, end, ).reset_index()
+        length = len(f) - 1
+        adj_price = f['Adj Close'][length]
+        date = f['Date'][length]
+        new_stock = Stock.objects.create(symbol=symbol)
+        new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
+        return(new_stock)
+    else :
+        return False
+
 def pull_investments(request):
     fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
     for x  in fang: 
         stock_exists = Stock.objects.filter(symbol=x).exists()
-        if stock_exists :
-            print ("Stock Exists")
-        else :
+        if not stock_exists :
             f = web.DataReader(x, 'yahoo', start, end, ).reset_index()
             length = len(f) - 1
             adj_price = f['Adj Close'][length]
             date = f['Date'][length]
             new_stock = Stock.objects.create(symbol=x)
             new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
-    # request.session['grabbed-stocks'] = True
-
 
 def investments_process(request):
-    if request.session['isloggedin'] == False:
+    if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
         return redirect("/")
     else:
         return redirect("/investments")
+
 
 
 # ------------------------------------------------------------------
