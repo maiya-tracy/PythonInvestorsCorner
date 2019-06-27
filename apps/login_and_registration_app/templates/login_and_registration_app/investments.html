@@ -102,17 +102,21 @@
             </div>
           </nav>
           <div class="well">
-            <h4>Dashboard</h4>
-            <p>Some text..</p>
+            <h4>Selected Stocks</h4>
+            <p>Stocks users are tracking</p>
           </div>
-
-
+          
+          
+          <div class="well">
+            <h4>FAANG Stocks</h4>
+            <p>Up to date stock prices on FAANG stocks for all users</p>
+          </div>
           {% for stock in stocks.all %}
           <div class="row">
             <div class="col-sm-8">
               <div class="well">
                   <h2>{{ stock.symbol }}</h2>
-                  <p>{{ stock.prices.last.price}}</p>
+                  <p class="text-success">Current Price : ${{ stock.prices.last.price}}</p>
                   <div class="fang-data"></div>
                 </div>
               </div>

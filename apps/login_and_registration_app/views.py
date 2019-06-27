@@ -127,12 +127,6 @@ def investments(request):
 # Pull Yahoo Finance Data for FAANG Stocks
 # ------------------------------------------------------------------
 def pull_investments(request) :
-    # start = datetime(2018,6,26)
-    # end = datetime.now()
-    # for x in fang :
-    #     dt = web.DataReader(x, 'yahoo', start, end)
-    #     name = x
-    #     current_date = 
     fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
@@ -141,12 +135,8 @@ def pull_investments(request) :
         length = len(f) -1
         adj_price = f['Adj Close'][length]
         date = f['Date'][length]
-        # print (f['Adj Close'][length])
-        # print (f['Date'][length])
-        ## Need to fix migrations to troubleshoot database
         new_stock = Stock.objects.create(symbol=x)
         new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
-        # print(new_stock.symbol)
     request.session['grabbed-stocks'] = True
 
 
