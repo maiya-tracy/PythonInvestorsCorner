@@ -107,13 +107,13 @@ def news(request):
 def investments(request):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
-        return redirect("/")
+        return redirect("/login")
     else:
         # if "grabbed-stocks" not in request.session :
         pull_investments(request)
         user = User.objects.get(id=request.session["userid"])
         context = {
-            "stocks": Stock.objects.all(),
+            "faang": Stock.objects.filter(users=None),
             "your_stocks" :user.watched_stocks.all()
         }
         return render(request, "login_and_registration_app/investments.html", context)
@@ -122,7 +122,7 @@ def investments(request):
 def add_stock(request) :
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
-        return redirect("/")
+        return redirect("/login")
     else:
         user = User.objects.get(id=request.session["userid"])
         new_stock = yahoo_pull_API(request, request.POST["symbol"])
@@ -170,7 +170,7 @@ def pull_investments(request):
 def investments_process(request):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
-        return redirect("/")
+        return redirect("/login")
     else:
         return redirect("/investments")
 
@@ -182,7 +182,7 @@ def investments_process(request):
 def community(request):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
-        return redirect("/")
+        return redirect("/login")
     else:
         return render(request, "login_and_registration_app/community.html")
 
@@ -190,7 +190,7 @@ def community(request):
 def add_chatroom_process(request):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
-        return redirect("/")
+        return redirect("/login")
     else:
         return redirect("/chatroom/add")
 
@@ -198,7 +198,7 @@ def add_chatroom_process(request):
 def view_chatroom(request, chatroomid):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
-        return redirect("/")
+        return redirect("/login")
     else:
         context = {
             'chatroomid': chatroomid,
@@ -209,7 +209,7 @@ def view_chatroom(request, chatroomid):
 def find_chatroom_process(request):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
-        return redirect("/")
+        return redirect("/login")
     else:
         return redirect("/find_chatroom/id")
 
