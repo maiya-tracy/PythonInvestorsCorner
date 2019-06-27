@@ -80,24 +80,20 @@
                 </div>
             </div>
 
-
-
-
         </div>
         <div class="row">
             <div class="col-2 fill-height side-nav-color">
                 <div class="mt-5">
                     <!-- p tags will be replaces with img tags with responsive icons-->
                     <ul class="nav navbar-nav ml-2 pl-2">
-                        <li><a class="text-decoration-none text-light" href="/news">Home</a></li>
-                        <li><a class="text-decoration-none text-light" href="/investments">Investments</a></li>
-                        <li><a class="text-decoration-none text-light" href="/paperstocks">Paper Stocks</a></li>
-                        <li><a class="text-decoration-none text-light" href="/friends">Friends</a></li>
-                        <li><a class="text-decoration-none text-light" href="/communities">Communities</a></li>
-
-                        <li class="ml-2"><a class="text-decoration-none text-light" href="/chatroom/1">Chatroom 1</a>
+                        <li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
+                        <li><a class="text-decoration-none text-light " href="/investments"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a></li>
+                        <li><a class="text-decoration-none text-light " href="/paperstocks"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> Paper Stocks</a></li>
+                        <li><a class="text-decoration-none text-light " href="/friends"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a></li>
+                        <li><a class="text-decoration-none text-light " href="/communities"><img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> Communities</a></li>
+                        <li class="ml-5"><a class="text-decoration-none text-light " href="/chatroom/1">Chatroom 1</a>
                         </li>
-                        <li><a class="text-decoration-none text-light" href="/find_communities">Find Communities</a>
+                        <li><a class="text-decoration-none text-light mt-2" href="/find_communities">Find Communities</a>
                         </li>
                     </ul>
 
@@ -105,31 +101,32 @@
                 <div class=" border-top border-dark mt-5">
                     <input type="text" class="mt-5 mb-3 col-12 border rounded-pill text-center">
                     <ul class="nav navbar-nav ml-2 pl-2">
-                        <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                    class="nav-msg-img"
-                                    src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                preview</a></li>
+                        <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg preview</a></li>
                     </ul>
 
                 </div> <!-- p tags will be replaces with img tags-->
             </div>
             <div class="col overflow-auto mt-5" style="height:80vh">
                 <p class="ml-2 scrollspy overflow-auto">
+                    <div class="well">
+                        <h4>FAANG Stocks</h4>
+                        <p>Up to date stock prices on FAANG stocks for all users</p>
+                    </div>
+
                     {% for stock in stocks.all %}
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-2 border rounded d-inline">
                             <div class="well">
                                 <h2>{{ stock.symbol }}</h2>
-                                <p>{{ stock.prices.last.price}}</p>
+                                <p class="text-success">Current Price : ${{ stock.prices.last.price}}</p>
                                 <div class="fang-data"></div>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
+                </p>
             </div>
-            </p>
         </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
