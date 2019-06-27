@@ -81,8 +81,11 @@ class Message(models.Model):
     objects = MessageManager()
 
 class StockManager(models.Manager):
-    def stock_validator():
-        errors = {}
+    def stock_validator(self, symbol):
+        stock_exists = Stock.objects.filter(symbol=symbol).exists()
+        # if stock_exists :
+
+        # errors = {}
         return errors
 
 class Stock(models.Model):
