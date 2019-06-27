@@ -6,6 +6,11 @@ import bcrypt
 import datetime
 import re
 
+from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
+from social_django.models import UserSocialAuth
+
 from faker import Factory, Faker
 from django.http import JsonResponse
 from django.conf import settings
@@ -39,25 +44,27 @@ def registration(request):
 
 
 def registration_process(request):
-    errors = User.objects.basic_validator(request.POST)
-    if len(errors) > 0:
-        for key, value in errors.items():
-            messages.error(request, value, extra_tags=key)
-        return redirect('/registration')
-    else:
-        DBfirst_name = request.POST["first_name"]
-        DBlast_name = request.POST["last_name"]
-        DBemail = request.POST["email"]
-        pw_to_hash = request.POST["password"]
-        DBpassword = bcrypt.hashpw(pw_to_hash.encode(), bcrypt.gensalt())
-        DBpassword = DBpassword.decode()
-        new_user = User.objects.create(
-            DBfirst_name=DBfirst_name, DBlast_name=DBlast_name, DBemail=DBemail, DBpassword=DBpassword)
-        request.session['userid'] = new_user.id
-        request.session['first_name'] = new_user.DBfirst_name
-        request.session['isloggedin'] = True
-        request.session.modified = True
-        return redirect("/news")
+	errors = User.objects.basic_validator(request.POST)
+	if len(errors) > 0:
+		for key, value in errors.items():
+			messages.error(request, value, extra_tags=key)
+		return redirect('/registration')
+	else:
+		DBfirst_name = request.POST["first_name"]
+		DBlast_name = request.POST["last_name"]
+		DBemail = request.POST["email"]
+		pw_to_hash = request.POST["password"]
+		has_usable_password = True
+		DBpassword = bcrypt.hashpw(pw_to_hash.encode(), bcrypt.gensalt())
+		DBpassword = DBpassword.decode()
+		DBusername = DBfirst_name[0] + DBlast_name
+		new_user = User.objects.create(
+			DBfirst_name=DBfirst_name, DBlast_name=DBlast_name, DBemail=DBemail, DBpassword=DBpassword, has_usable_password=has_usable_password, DBusername=DBusername)
+		request.session['userid'] = new_user.id
+		request.session['first_name'] = new_user.DBfirst_name
+		request.session['isloggedin'] = True
+		request.session.modified = True
+		return redirect("/news")
 
 
 # ------------------------------------------------------------------
@@ -82,6 +89,49 @@ def login_process(request):
         return redirect("/news")
 
 
+
+@login_required
+def settings_page(request):
+    user = request.User
+
+    try:
+        github_login = user.social_auth.get(provider='github')
+    except UserSocialAuth.DoesNotExist:
+        github_login = None
+
+    try:
+        facebook_login = user.social_auth.get(provider='facebook')
+    except UserSocialAuth.DoesNotExist:
+        facebook_login = None
+
+    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+    return render(request, 'login_and_registration_app/settings_page.html', {
+        'github_login': github_login,
+        'facebook_login': facebook_login,
+        'can_disconnect': can_disconnect
+    })
+
+@login_required
+def password(request):
+    if request.User.has_usable_password():
+        PasswordForm = PasswordChangeForm
+    else:
+        PasswordForm = AdminPasswordChangeForm
+
+    if request.method == 'POST':
+        form = PasswordForm(request.User, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.User)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordForm(request.User)
+    return render(request, 'login_and_registration_app/settings_page.html', {'form': form})
+
 # ------------------------------------------------------------------
 # Logout
 # ------------------------------------------------------------------
@@ -94,6 +144,7 @@ def logout(request):
 # ------------------------------------------------------------------
 # News
 # ------------------------------------------------------------------
+@login_required
 def news(request):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
@@ -105,6 +156,7 @@ def news(request):
 # ------------------------------------------------------------------
 # Investments
 # ------------------------------------------------------------------
+@login_required
 def investments(request):
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
@@ -119,7 +171,7 @@ def investments(request):
         }
         return render(request, "login_and_registration_app/investments.html", context)
 
-# Seach Bar Stock Lookup 
+# Seach Bar Stock Lookup
 def add_stock(request) :
     if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
         print("hack")
@@ -162,7 +214,7 @@ def pull_investments(request):
     fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
-    for x  in fang: 
+    for x  in fang:
         stock_exists = Stock.objects.filter(symbol=x).exists()
         if not stock_exists :
             f = web.DataReader(x, 'yahoo', start, end, ).reset_index()

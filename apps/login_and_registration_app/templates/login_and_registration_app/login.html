@@ -72,8 +72,7 @@
               <input type="submit" value="Log in!" class="btn btn-primary rounded-pill">
               <p>or Sign in with</p>
               <p>
-                <div class="fb-login-button" data-width="" data-size="small" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
-                <html lang="en">
+
 
                 <div class="g-signin2" data-width='40' data-height='40' data-longtitle='true'><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></div>
                 <!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> -->
@@ -106,6 +105,7 @@
 
                 </html>
                 <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
+                <a href="{% url 'social:begin' 'facebook' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
                 <a href="{% url 'social:begin' 'github' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
               </p>
               <p>No account? <a href="/registration" class="text-danger">Sign up here!</a></p>
