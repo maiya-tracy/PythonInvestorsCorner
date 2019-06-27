@@ -6,6 +6,11 @@ import bcrypt
 import datetime
 import re
 
+from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
+from social_django.models import UserSocialAuth
+
 from faker import Factory, Faker
 from django.http import JsonResponse
 from django.conf import settings
@@ -47,10 +52,12 @@ def registration_process(request):
 		DBlast_name = request.POST["last_name"]
 		DBemail = request.POST["email"]
 		pw_to_hash = request.POST["password"]
+		has_usable_password = True
 		DBpassword = bcrypt.hashpw(pw_to_hash.encode(), bcrypt.gensalt())
 		DBpassword = DBpassword.decode()
+		DBusername = DBfirst_name[0] + DBlast_name
 		new_user = User.objects.create(
-			DBfirst_name=DBfirst_name, DBlast_name=DBlast_name, DBemail=DBemail, DBpassword=DBpassword)
+			DBfirst_name=DBfirst_name, DBlast_name=DBlast_name, DBemail=DBemail, DBpassword=DBpassword, has_usable_password=has_usable_password, DBusername=DBusername)
 		request.session['userid'] = new_user.id
 		request.session['first_name'] = new_user.DBfirst_name
 		request.session['isloggedin'] = True
@@ -79,6 +86,49 @@ def login_process(request):
 		return redirect("/news")
 
 
+
+@login_required
+def settings_page(request):
+    user = request.User
+
+    try:
+        github_login = user.social_auth.get(provider='github')
+    except UserSocialAuth.DoesNotExist:
+        github_login = None
+
+    try:
+        facebook_login = user.social_auth.get(provider='facebook')
+    except UserSocialAuth.DoesNotExist:
+        facebook_login = None
+
+    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+    return render(request, 'login_and_registration_app/settings_page.html', {
+        'github_login': github_login,
+        'facebook_login': facebook_login,
+        'can_disconnect': can_disconnect
+    })
+
+@login_required
+def password(request):
+    if request.User.has_usable_password():
+        PasswordForm = PasswordChangeForm
+    else:
+        PasswordForm = AdminPasswordChangeForm
+
+    if request.method == 'POST':
+        form = PasswordForm(request.User, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.User)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordForm(request.User)
+    return render(request, 'login_and_registration_app/settings_page.html', {'form': form})
+
 # ------------------------------------------------------------------
 # Logout
 # ------------------------------------------------------------------
@@ -91,22 +141,16 @@ def logout(request):
 # ------------------------------------------------------------------
 # News
 # ------------------------------------------------------------------
+@login_required
 def news(request):
-	if request.session['isloggedin'] == False:
-		print("hack")
-		return redirect("/")
-	else:
-		return render(request, "login_and_registration_app/news.html")
+	return render(request, "login_and_registration_app/news.html")
 
 
 # ------------------------------------------------------------------
 # Investments
 # ------------------------------------------------------------------
+@login_required
 def investments(request):
-	if request.session['isloggedin'] == False:
-		print("hack")
-		return redirect("/")
-	else:
 		if "grabbed-stocks" not in request.session :
 			pull_investments(request)
 		context = {
@@ -129,7 +173,7 @@ def pull_investments(request) :
     fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
-    for x in fang : 
+    for x in fang :
         f = web.DataReader(x, 'yahoo', start, end, ).reset_index()
         length = len(f) -1
         adj_price = f['Adj Close'][length]

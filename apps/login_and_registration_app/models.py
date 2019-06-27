@@ -39,11 +39,13 @@ class UserManager(models.Manager):
         return errors
 
 class User(models.Model):
+    DBusername = models.CharField(max_length=255)
     DBfirst_name = models.CharField(max_length=255)
     DBlast_name = models.CharField(max_length=255)
     DBemail = models.CharField(max_length=255)
     DBpassword = models.CharField(max_length=255)
     friends = models.ManyToManyField("self")
+    has_usable_password = models.BooleanField()
     #chats = all chats the user is in
     #user_messages = all messages the user has sent
     #watched_stocks = all stocks the user is watching
@@ -98,7 +100,3 @@ class Stock_Price(models.Model) :
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
-
-
