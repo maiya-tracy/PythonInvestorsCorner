@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Boot strap link -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- custom css links -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
@@ -23,32 +24,34 @@
         .fill-height {
             height: 93vh;
         }
-    /* On small screens, set height to 'auto' for the grid */
-    @media screen and (max-width: 767px) {
-      .row.content {
-        height: auto;
-      }
-    }
-    /* <!-- <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
+
+        /* On small screens, set height to 'auto' for the grid */
+        @media screen and (max-width: 767px) {
+            .row.content {
+                height: auto;
+            }
+        }
+
+        /* <!-- <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
     <!-- <script src="{% static 'login_and_registration_app/js/stock_data.js' %}"></script>            Jack- stock data jquery-->             */
-    
-    
-    .fill-width {
-        width: 100vw;
-    }
-    
-    .top-nav-color {
-        background-color:#7ADA7A;
-    }
-    
-    .side-nav-color {
-        background-color: #707070;
-    }
-    
-    .nav-msg-img {
-        height: 5vh;
-        width: auto;
-    }
+
+
+        .fill-width {
+            width: 100vw;
+        }
+
+        .top-nav-color {
+            background-color: #7ADA7A;
+        }
+
+        .side-nav-color {
+            background-color: #707070;
+        }
+
+        .nav-msg-img {
+            height: 5vh;
+            width: auto;
+        }
     </style>
 </head>
 
@@ -72,23 +75,14 @@
                     </form>
                 </div>
                 <div class="p-2 bd-highlight">
-                    <a href="###" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a> <!-- needs link! -->
+                    <a href="###" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a>
+                    <!-- needs link! -->
                 </div>
             </div>
 
-          {% for stock in stocks.all %}
-          <div class="row">
-            <div class="col-sm-8">
-              <div class="well">
-                  <h2>{{ stock.symbol }}</h2>
-                  <p>{{ stock.prices.last.price}}</p>
-                  <div class="fang-data"></div>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
 
-          
+
+
         </div>
         <div class="row">
             <div class="col-2 fill-height side-nav-color">
@@ -101,48 +95,41 @@
                         <li><a class="text-decoration-none text-light" href="/friends">Friends</a></li>
                         <li><a class="text-decoration-none text-light" href="/communities">Communities</a></li>
 
-                        <li class="ml-2"><a class="text-decoration-none text-light" href="/chatroom/1">Chatroom 1</a></li>
-                        <li><a class="text-decoration-none text-light" href="/find_communities">Find Communities</a></li>
+                        <li class="ml-2"><a class="text-decoration-none text-light" href="/chatroom/1">Chatroom 1</a>
+                        </li>
+                        <li><a class="text-decoration-none text-light" href="/find_communities">Find Communities</a>
+                        </li>
                     </ul>
 
                 </div>
                 <div class=" border-top border-dark mt-5">
                     <input type="text" class="mt-5 mb-3 col-12 border rounded-pill text-center">
                     <ul class="nav navbar-nav ml-2 pl-2">
-                            <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img class="nav-msg-img" src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg preview</a></li>
-                        </ul>
+                        <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+                                    class="nav-msg-img"
+                                    src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+                                preview</a></li>
+                    </ul>
 
                 </div> <!-- p tags will be replaces with img tags-->
             </div>
             <div class="col overflow-auto mt-5" style="height:80vh">
                 <p class="ml-2 scrollspy overflow-auto">
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
+                    {% for stock in stocks.all %}
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="well">
+                                <h2>{{ stock.symbol }}</h2>
+                                <p>{{ stock.prices.last.price}}</p>
+                                <div class="fang-data"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
-                    </div>
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
-                    </div>
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
-                    </div>
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
-                    </div>
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
-                    </div>
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
-                    </div>
-                    <div class="container border border-dark mt-5 p-5">
-                        <p>stock api</p>
-                    </div>
-                </p>
+                    {% endfor %}
             </div>
+            </p>
         </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -154,6 +141,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 </body>
+
 </html>
 
 <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->

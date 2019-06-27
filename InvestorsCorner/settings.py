@@ -150,8 +150,6 @@ environ.Env.read_env(env_file=base('.env')) # reading .env file
 
 TWILIO_ACCT_SID = os.environ.get('TWILIO_ACCT_SID')
 TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCT_SID')
-print(TWILIO_ACCOUNT_SID)
-print("************")
 TWILIO_CHAT_SID = os.environ.get('TWILIO_CHAT_SID')
 TWILIO_IPM_SERVICE_SID = os.environ.get('TWILIO_CHAT_SID')
 TWILIO_CHAT_SERVICE_SID = os.environ.get('TWILIO_CHAT_SID')
