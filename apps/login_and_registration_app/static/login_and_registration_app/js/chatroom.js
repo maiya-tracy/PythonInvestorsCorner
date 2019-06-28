@@ -66,7 +66,7 @@ $(function() {
   function createOrJoinGeneralChannel() {
     // Get the general chat channel, which is where all the messages are
     // sent in this simple application
-    print('Attempting to join "general" chat channel...');
+    print('Joining "general" chat channel...');
     chatClient.getChannelByUniqueName('general')
     .then(function(channel) {
       generalChannel = channel;

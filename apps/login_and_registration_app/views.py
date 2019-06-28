@@ -62,7 +62,7 @@ def registration_process(request):
 			DBfirst_name=DBfirst_name, DBlast_name=DBlast_name, DBemail=DBemail, DBpassword=DBpassword, has_usable_password=has_usable_password, DBusername=DBusername)
 		request.session['userid'] = new_user.id
 		request.session['first_name'] = new_user.DBfirst_name
-		request.session['username'] = current_user.DBusername
+		request.session['username'] = new_user.DBusername
 		request.session['isloggedin'] = True
 		request.session.modified = True
 		return redirect("/news")
