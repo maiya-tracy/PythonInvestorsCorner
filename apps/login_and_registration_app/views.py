@@ -44,6 +44,7 @@ def registration(request):
 
 
 def registration_process(request):
+	print("hello")
 	errors = User.objects.basic_validator(request.POST)
 	if len(errors) > 0:
 		for key, value in errors.items():
@@ -66,6 +67,7 @@ def registration_process(request):
 		request.session['isloggedin'] = True
 		request.session.modified = True
 		return redirect("/news")
+
 
 
 # ------------------------------------------------------------------
