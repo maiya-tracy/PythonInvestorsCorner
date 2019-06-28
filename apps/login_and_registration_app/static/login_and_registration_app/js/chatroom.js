@@ -1,3 +1,4 @@
+console.log("**********outside")
 $(function() {
   // Get handle to the chat div
   var $chatWindow = $('#messages');
@@ -9,7 +10,9 @@ $(function() {
   // will have in this sample app
   var generalChannel;
 
-  var username = session['username'];
+  var username
+
+console.log("**********username")
 
   // Helper function to print info messages to the chat window
   function print(infoMessage, asHtml) {
