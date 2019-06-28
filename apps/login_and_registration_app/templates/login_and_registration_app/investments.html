@@ -8,12 +8,22 @@
 	<!-- Boot strap link -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- AJAX CDN-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- custom css links -->
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
 	<link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
 	<!-- end of custom links -->
 	<title>Investments</title>
+	<script>
+		$(function(){
+			$('#stock_look').autocomplete( {
+				source : "/investments/ajax_calls/stock_lookup",
+				minLength : 3,
+			});
+		});
+	</script>
 </head>
 
 <body>
@@ -42,7 +52,7 @@
 					<form action="/add_stock" method="POST">
 						<div class="input-group">
 							{% csrf_token %}
-							<input type="text">
+							<input type="text" name="search" id="stock_look">
 							<div class="input-group-append">
 								<button class="btn btn-outline-secondary" type="button">find</button>
 							</div>

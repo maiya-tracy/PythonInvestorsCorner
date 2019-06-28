@@ -26,7 +26,7 @@ import pandas_datareader.data as web
 from pandas_datareader._utils import RemoteDataError as error #handle error for non existent stock
 from datetime import datetime
 from datetime import timedelta
-
+# from django.utils import simplejson
 
 # ------------------------------------------------------------------
 # Home
@@ -196,6 +196,10 @@ def add_stock(request) :
 		new_stock = yahoo_pull_API(request, request.POST["symbol"])
 		user.watched_stocks.add(new_stock)  #add to user
 		return redirect("/investments")
+#Search Bar Auto Complete 
+def stock_lookup(request) :
+	print ("AJAX")
+	return redirect("/investments")
 # ------------------------------------------------------------------
 # Paper Stocks, "feature is currently unavailable"
 # ------------------------------------------------------------------
