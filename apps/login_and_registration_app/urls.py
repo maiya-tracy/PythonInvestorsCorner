@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^token', views.token, name='token'),
     url(r'^communities$', views.community),
     url(r'^logout/$', views.logout, name='logout'),
+    url(r'^fb_session$', views.fb_log, name='fb_session'),
     # url(r'^user/chatroom/add', views.add_chatroom),
     # url(r'^user/chatroom/add/processing$' views.add_chatroom_process),
 ]

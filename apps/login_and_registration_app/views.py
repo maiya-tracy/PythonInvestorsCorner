@@ -90,7 +90,14 @@ def login_process(request):
 		request.session['username'] = current_user.DBusername
 		return redirect("/news")
 
-
+def fb_log(request) :
+    request.session['isloggedin'] = True    #Need AJAX to get fb info for user db
+    current_user = User.objects.create(DBusername="test", DBfirst_name="test", DBlast_name="test", DBemail="test@test.com", DBpassword="test", has_usable_password=True)
+    request.session['userid'] = current_user.id
+    request.session['first_name'] = current_user.DBfirst_name
+    request.session['username'] = current_user.DBusername
+    print("success ******")
+    return redirect("/news")
 
 def settings_page(request):
 	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
@@ -157,7 +164,7 @@ def news(request):
 		print("hack")
 		return redirect("/")
 	else:
-		return render(request, "login_and_registration_app/news.html")
+	    return render(request, "login_and_registration_app/news.html")
 
 
 # ------------------------------------------------------------------
