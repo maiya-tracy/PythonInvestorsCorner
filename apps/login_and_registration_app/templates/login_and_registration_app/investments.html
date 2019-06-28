@@ -41,14 +41,6 @@
 				</div>
 				<!-- search bar -->
 				<div class="p-2 bd-highlight">
-
-
-
-
-
-
-
-
 					<form action="/add_stock" method="POST">
 						{% csrf_token %}
 						<input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center" placeholder="Search"
@@ -168,9 +160,9 @@
 					<form class="pl-2 pt-3" action="/add_stock" method="POST">
 						<div class="input-group">
 							{% csrf_token %}
-							<input type="text">
+							<input type="text" name="symbol">
 							<div class="input-group-append">
-								<button class="btn btn-outline-success" type="button">Find stock!</button>
+								<button class="btn btn-outline-success" type="submit">Find stock!</button>
 							</div>
 						</div>
 					</form>
