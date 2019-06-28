@@ -54,19 +54,19 @@
           <form action='/login/processing' method="POST">
             {% csrf_token %}
             <div class="form-group">
+              {% if messages %}
+              {% for message in messages %}
+              {% if message.extra_tags == "loginemail" %}
+              <p class="text-danger">{{ message }}</p>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
               <label for="emailLogin">Email</label>
               <input type="email" name="emailLogin" class="form-control" placeholder="Email">
             </div>
             <div class="form-group">
               <label for="passwordLogin">Password</label>
               <input type="password" name="passwordLogin" class="form-control" placeholder="Password">
-              {% if messages %}
-              {% for message in messages %}
-              {% if message.extra_tags == "login_credentials" %}
-              <p class="text-danger">{{ message }}</p>
-              {% endif %}
-              {% endfor %}
-              {% endif %}
             </div>
             <div class="text-center">
               <input type="submit" value="Log in!" class="btn btn-primary rounded-pill">
