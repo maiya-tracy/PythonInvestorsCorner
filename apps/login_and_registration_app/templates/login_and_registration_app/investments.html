@@ -39,14 +39,6 @@
 				<div class="p-2 flex-grow-1 bd-highlight">
 					<p class="h2 d-inline text-center text-light ml-2">Investments</p>
 				</div>
-				<!-- search bar -->
-				<div class="p-2 bd-highlight">
-					<form action="/add_stock" method="POST">
-						{% csrf_token %}
-						<input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center" placeholder="Search"
-							name="symbol">
-					</form>
-				</div>
 				<div class="p-2 bd-highlight">
 					<a href="/logout" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a>
 				</div>
