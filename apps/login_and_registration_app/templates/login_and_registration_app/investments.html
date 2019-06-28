@@ -29,10 +29,12 @@
                 <div class="p-2 flex-grow-1 bd-highlight">
                     <p class="h2 d-inline text-center text-light ml-2">Investments</p>
                 </div>
+                <!-- search bar -->
                 <div class="p-2 bd-highlight">
-                    <form action="">
+                    <form action="/add_stock" method="POST">
+                        {% csrf_token %}
                         <input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center"
-                            placeholder="Search">
+                            placeholder="Search" name="symbol">
                     </form>
                 </div>
                 <div class="p-2 bd-highlight">
@@ -124,6 +126,27 @@
             </div>
             <div class="col ml-5">
                 <div class="d-inline">
+                    <p class="h4 ml-3 mt-4">WATCHLIST</p>
+                    <p class="ml-3">Your watched stocks</p>
+                </div>
+                <div class="col overflow-auto mt-2" style="height:70vh">
+                    <div class="ml-1 scrollspy overflow-auto">
+                        <div class="col overflow-auto" style="height:80vh">
+                            <div class="row">
+                                {% for stock in your_stocks.all %}
+                                <div class="col-2 border border-dark d-inline pr-1 pl-1 mr-4 mt-3 text-center pt-1 pb-4 bg-light">
+                                    <br>
+                                    <p class="h2 d-inline">{{ stock.symbol }}</p>
+                                    <p class="text-success pb-5">Current Price : ${{ stock.prices.last.price}}</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col ml-5">
+                <div class="d-inline">
                     <p class="h4 ml-3 mt-4">FAANG Stocks</p>
                     <p class="ml-3">Up to date stock prices on FAANG stocks for all users</p>
                 </div>
@@ -131,7 +154,7 @@
                     <div class="ml-1 scrollspy overflow-auto">
                         <div class="col overflow-auto" style="height:80vh">
                             <div class="row">
-                                {% for stock in stocks.all %}
+                                {% for stock in faang.all %}
                                 <div class="col-2 border border-dark d-inline pr-1 pl-1 mr-4 mt-3 text-center pt-1 pb-4 bg-light">
                                     <br>
                                     <p class="h2 d-inline">{{ stock.symbol }}</p>

@@ -11,6 +11,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
   <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
+
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="1094950895075-gke29sks0gneh3900c61be78g52e0es1.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
   <title>Login</title>
 
 <body>
@@ -67,10 +72,10 @@
               <input type="submit" value="Log in!" class="btn btn-primary rounded-pill">
               <p>or Sign in with</p>
               <p>
-                <div class="fb-login-button" data-width="" data-size="small" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="true"></div>
-                <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google-plus.png' %}" alt="google login"></a>
-                <a href="###"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
-                <a href="{% url 'social:begin' 'github' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
+                <a href="{% url 'social:begin' 'linkedin' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/linkedin.png' %}" alt="linkedin login"></a>
+                <a href="{% url 'social:begin' 'google' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/google.png' %}" alt="google login"></a>
+                <a href="{% url 'social:begin' 'facebook' %}"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/facebook.png' %}" alt="facebook login"></a>
+                <a href="{% url 'social:begin' 'github' %}?next=news"><img id="media_icon" class="loginicons" src="{% static 'login_and_registration_app/images/github.png' %}" alt="github login"></a>
               </p>
               <p>No account? <a href="/registration" class="text-danger">Sign up here!</a></p>
             </div>

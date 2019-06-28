@@ -6,6 +6,11 @@ import bcrypt
 import datetime
 import re
 
+from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
+from social_django.models import UserSocialAuth
+
 from faker import Factory, Faker
 from django.http import JsonResponse
 from django.conf import settings
@@ -16,8 +21,9 @@ from twilio.jwt.access_token.grants import (
 	SyncGrant,
 	ChatGrant
 )
-#Stocks
+# Stocks
 import pandas_datareader.data as web
+from pandas_datareader._utils import RemoteDataError as error #handle error for non existent stock
 from datetime import datetime
 from datetime import timedelta
 
@@ -36,6 +42,7 @@ def home(request):
 def registration(request):
 	return render(request, "login_and_registration_app/registration.html")
 
+
 def registration_process(request):
 	print("hello")
 	errors = User.objects.basic_validator(request.POST)
@@ -48,12 +55,15 @@ def registration_process(request):
 		DBlast_name = request.POST["last_name"]
 		DBemail = request.POST["email"]
 		pw_to_hash = request.POST["password"]
+		has_usable_password = True
 		DBpassword = bcrypt.hashpw(pw_to_hash.encode(), bcrypt.gensalt())
 		DBpassword = DBpassword.decode()
+		DBusername = DBfirst_name[0] + DBlast_name
 		new_user = User.objects.create(
-			DBfirst_name=DBfirst_name, DBlast_name=DBlast_name, DBemail=DBemail, DBpassword=DBpassword)
+			DBfirst_name=DBfirst_name, DBlast_name=DBlast_name, DBemail=DBemail, DBpassword=DBpassword, has_usable_password=has_usable_password, DBusername=DBusername)
 		request.session['userid'] = new_user.id
 		request.session['first_name'] = new_user.DBfirst_name
+		request.session['username'] = new_user.DBusername
 		request.session['isloggedin'] = True
 		request.session.modified = True
 		return redirect("/news")
@@ -66,6 +76,7 @@ def registration_process(request):
 def login(request):
 	return render(request, "login_and_registration_app/login.html")
 
+
 def login_process(request):
 	errors = User.objects.login_validator(request.POST)
 	if len(errors) > 0:
@@ -74,12 +85,62 @@ def login_process(request):
 		messages.error(request, request.POST["emailLogin"], "holdLoginEmail")
 		return redirect('/login')
 	else:
-		current_user = User.objects.get(DBemail = request.POST['emailLogin'])
+		current_user = User.objects.get(DBemail=request.POST['emailLogin'])
 		request.session['userid'] = current_user.id
 		request.session['isloggedin'] = True
 		request.session['first_name'] = current_user.DBfirst_name
+		request.session['username'] = current_user.DBusername
 		return redirect("/news")
 
+
+
+def settings_page(request):
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
+		print("hack")
+		return redirect("/")
+	else:
+		user = request.User
+
+		try:
+			github_login = user.social_auth.get(provider='github')
+		except UserSocialAuth.DoesNotExist:
+			github_login = None
+
+		try:
+			facebook_login = user.social_auth.get(provider='facebook')
+		except UserSocialAuth.DoesNotExist:
+			facebook_login = None
+
+		can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+		return render(request, 'login_and_registration_app/settings_page.html', {
+			'github_login': github_login,
+			'facebook_login': facebook_login,
+			'can_disconnect': can_disconnect
+		})
+
+def password(request):
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
+		print("hack")
+		return redirect("/")
+	else:
+		if request.User.has_usable_password():
+			PasswordForm = PasswordChangeForm
+		else:
+			PasswordForm = AdminPasswordChangeForm
+
+		if request.method == 'POST':
+			form = PasswordForm(request.User, request.POST)
+			if form.is_valid():
+				form.save()
+				update_session_auth_hash(request, form.User)
+				messages.success(request, 'Your password was successfully updated!')
+				return redirect('password')
+			else:
+				messages.error(request, 'Please correct the error below.')
+		else:
+			form = PasswordForm(request.User)
+		return render(request, 'login_and_registration_app/settings_page.html', {'form': form})
 
 # ------------------------------------------------------------------
 # Logout
@@ -94,7 +155,7 @@ def logout(request):
 # News
 # ------------------------------------------------------------------
 def news(request):
-	if request.session['isloggedin'] == False:
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
 		return redirect("/")
 	else:
@@ -105,73 +166,104 @@ def news(request):
 # Investments
 # ------------------------------------------------------------------
 def investments(request):
-	if request.session['isloggedin'] == False:
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
-		return redirect("/")
+		return redirect("/login")
 	else:
-		if "grabbed-stocks" not in request.session :
-			pull_investments(request)
+		# if "grabbed-stocks" not in request.session :
+		pull_investments(request)
+		user = User.objects.get(id=request.session["userid"])
 		context = {
-			"stocks" : Stock.objects.all(),
+			"faang": Stock.objects.filter(users=None),
+			"your_stocks" :user.watched_stocks.all()
 		}
 		return render(request, "login_and_registration_app/investments.html", context)
 
-
+# Seach Bar Stock Lookup
+def add_stock(request) :
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
+		print("hack")
+		return redirect("/login")
+	else:
+		user = User.objects.get(id=request.session["userid"])
+		new_stock = yahoo_pull_API(request, request.POST["symbol"])
+		user.watched_stocks.add(new_stock)  #add to user
+		return redirect("/investments")
 # ------------------------------------------------------------------
 # Paper Stocks, "feature is currently unavailable"
 # ------------------------------------------------------------------
 def paper_stocks(request):
-    return render(request, "login_and_registration_app/paper_stocks.html")
+	return render(request, "login_and_registration_app/paper_stocks.html")
 
 
 # ------------------------------------------------------------------
 # Pull Yahoo Finance Data for FAANG Stocks
 # ------------------------------------------------------------------
-def pull_investments(request) :
-    fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
+def yahoo_pull_API(request, symbol) :
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
-    for x in fang : 
-        f = web.DataReader(x, 'yahoo', start, end, ).reset_index()
-        length = len(f) -1
+    stock_exists = Stock.objects.filter(symbol=symbol).exists() #logic to not repeat stocks
+    if not stock_exists :
+        try :            #Validation for non existent stocks
+            f = web.DataReader(symbol, 'yahoo', start, end, ).reset_index()
+        except error :
+            print ("ERROR")
+            return False
+        length = len(f) - 1
         adj_price = f['Adj Close'][length]
         date = f['Date'][length]
-        new_stock = Stock.objects.create(symbol=x)
+        new_stock = Stock.objects.create(symbol=symbol)
         new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
-    request.session['grabbed-stocks'] = True
+        return(new_stock)
+    else :
+        return False
 
+def pull_investments(request):
+	fang = ["FB", "AMZN", "AAPL", "NFLX", "GOOGL", "TSLA"]
+	start = datetime.now() - timedelta(days=365)
+	end = datetime.now()
+	for x  in fang:
+		stock_exists = Stock.objects.filter(symbol=x).exists()
+		if not stock_exists :
+			f = web.DataReader(x, 'yahoo', start, end, ).reset_index()
+			length = len(f) - 1
+			adj_price = f['Adj Close'][length]
+			date = f['Date'][length]
+			new_stock = Stock.objects.create(symbol=x)
+			new_stock_price = Stock_Price.objects.create(stock=new_stock, date=date, price=adj_price)
 
 def investments_process(request):
-	if request.session['isloggedin'] == False:
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
-		return redirect("/")
+		return redirect("/login")
 	else:
 		return redirect("/investments")
+
 
 
 # ------------------------------------------------------------------
 # Communities
 # ------------------------------------------------------------------
 def community(request):
-	if request.session['isloggedin'] == False:
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
-		return redirect("/")
+		return redirect("/login")
 	else:
 		return render(request, "login_and_registration_app/community.html")
 
 
 def add_chatroom_process(request):
-	if request.session['isloggedin'] == False:
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
-		return redirect("/")
+		return redirect("/login")
 	else:
 		return redirect("/chatroom/add")
 
 
 def view_chatroom(request, chatroomid):
-	if request.session['isloggedin'] == False:
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
-		return redirect("/")
+		return redirect("/login")
 	else:
 		context = {
 			'chatroomid': chatroomid,
@@ -180,9 +272,9 @@ def view_chatroom(request, chatroomid):
 
 
 def find_chatroom_process(request):
-	if request.session['isloggedin'] == False:
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
-		return redirect("/")
+		return redirect("/login")
 	else:
 		return redirect("/find_chatroom/id")
 
@@ -198,8 +290,8 @@ def logout(request):
 
 
 def token(request):
-	fake = Factory.create()
-	return generateToken(fake.user_name())
+	user = request.session['username']
+	return generateToken(user)
 
 
 def generateToken(identity):
