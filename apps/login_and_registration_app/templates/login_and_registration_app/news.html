@@ -1,145 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Boot strap link -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- custom css links -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
-    <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
-    <!-- end of custom links -->
-    <title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- Boot strap link -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- custom css links -->
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
+	<link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
+	<!-- end of custom links -->
+	<title>News</title>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row top-nav-color">
-            <div class="col-2 custom-height side-nav-color m">
-                <div class="">
-                    <p class="h1 text-center mt-3 text-light">Logo</p>
-                </div>
-            </div>
-            <!-- mt-auto mb-auto ml-auto mr-auto -->
-            <div class="col top-nav-color d-flex bd-highlight mt-auto mb-auto">
-                <div class="p-2 flex-grow-1 bd-highlight">
-                    <p class="h2 d-inline text-center text-light ml-2">Home</p>
-                </div>
-                <div class="p-2 bd-highlight">
-                    <form action="">
-                        <input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center"
-                            placeholder="Search">
-                    </form>
-                </div>
-                <div class="p-2 bd-highlight">
-                    <a href="/logout" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2 fill-height side-nav-color">
-                <div class="mt-3">
-                    <!-- p tags will be replaces with img tags with responsive icons-->
-                    <ul class="nav navbar-nav ml-2 pl-2">
-                        <li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img"
-                                    src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/investments"><img
-                                    class="nav-msg-img"
-                                    src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a>
-                        </li>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/paperstocks"><img
-                                    class="nav-msg-img"
-                                    src="{% static 'login_and_registration_app/images/paper.png' %}" /> Paper Stocks</a>
-                        </li>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/friends"><img
-                                    class="nav-msg-img"
-                                    src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a>
-                        </li>
-                        <li class="mt-2"><a class="text-decoration-none text-light" href="/find_communities"><img
-                                    class="nav-msg-img"
-                                    src="{% static 'login_and_registration_app/images/community.png' %}"> Find
-                                Communities</a>
-                        <li class="mt-2"><a class="text-decoration-none text-light " href="/communities"><img
-                                    class="nav-msg-img"
-                                    src="{% static 'login_and_registration_app/images/group.png' %}" /> Your
-                                Communities</a></li>
-                    </ul>
-                    <div class="col overflow-auto mt-3" style="height:11vh;">
-                        <ul class="nav navbar-nav">
-                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
-                                    href="/chatroom/1">Chatroom1</a>
-                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
-                                    href="/chatroom/1">Chatroom2</a>
-                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
-                                    href="/chatroom/1">Chatroom3</a>
-                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
-                                    href="/chatroom/1">Chatroom4</a>
-                            <li class="ml-5 mb-2"><a class="text-decoration-none text-light "
-                                    href="/chatroom/1">Chatroom5</a>
-                        </ul>
-                    </div>
-                    </li>
-                    </li>
-                    </ul>
-                </div>
-                <div class="border-top border-light mt-3">
-                        <input type="text" class="mt-4 col-12 border rounded-pill text-center mb-1" placeholder="Search">
-                        <div class="col overflow-auto" style="height:25vh;">
-                            <ul class="nav navbar-nav">
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                                <li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
-                                            class="nav-msg-img"
-                                            src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
-                                        preview</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            <div class="container">
-                <div class="d-inline">
-                    <p class="h4 ml-3 mt-4">News Feed</p>
-                    <p class="ml-3"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+	<div class="container-fluid">
+		<div class="row top-nav-color">
+			<div class="col-2 custom-height side-nav-color m">
+				<div class="">
+					<p class="h1 text-center mt-3 text-light">Logo</p>
+				</div>
+			</div>
+			<!-- mt-auto mb-auto ml-auto mr-auto -->
+			<div class="col top-nav-color d-flex bd-highlight mt-auto mb-auto">
+				<div class="p-2 flex-grow-1 bd-highlight">
+					<p class="h2 d-inline text-center text-light ml-2">Investments</p>
+				</div>
+				<div class="p-2 bd-highlight">
+					<form action="">
+						<input type="text" class="col-12 border rounded-pill mt-2 pb-1 text-center"
+							placeholder="Search">
+					</form>
+				</div>
+				<div class="p-2 bd-highlight">
+					<a href="/logout" class="btn btn-light ml-auto mt-1 rounded-pill pr-4 pl-4">Logout</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2 fill-height side-nav-color">
+				<div class="mt-3">
+					<!-- p tags will be replaces with img tags with responsive icons-->
+					<ul class="nav navbar-nav ml-2 pl-2">
+						<li><a class="text-decoration-none text-light " href="/news"><img class="nav-msg-img"
+									src="{% static 'login_and_registration_app/images/home.png' %}" /> Home</a></li>
+						<li class="mt-2"><a class="text-decoration-none text-light " href="/investments"><img
+									class="nav-msg-img"
+									src="{% static 'login_and_registration_app/images/stock.png' %}" /> Investments</a>
+						</li>
+						<li class="mt-2"><a class="text-decoration-none text-light " href="/paperstocks"><img
+									class="nav-msg-img"
+									src="{% static 'login_and_registration_app/images/paper.png' %}" /> Paper Stocks</a>
+						</li>
+						<li class="mt-2"><a class="text-decoration-none text-light " href="/friends"><img
+									class="nav-msg-img"
+									src="{% static 'login_and_registration_app/images/add-friend.png' %}" /> Friends</a>
+						</li>
+						<li class="mt-2"><a class="text-decoration-none text-light" href="/find_communities"><img
+									class="nav-msg-img"
+									src="{% static 'login_and_registration_app/images/community.png' %}"> Find
+								Communities</a>
+						<li class="mt-2"><a class="text-decoration-none text-light " href="/communities"><img
+									class="nav-msg-img"
+									src="{% static 'login_and_registration_app/images/group.png' %}" /> Your
+								Communities</a></li>
+					</ul>
+					<div class="col overflow-auto mt-3" style="height:11vh;">
+						<ul class="nav navbar-nav">
+							<li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+									href="/chatroom/1">Chatroom1</a>
+							<li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+									href="/chatroom/1">Chatroom2</a>
+							<li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+									href="/chatroom/1">Chatroom3</a>
+							<li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+									href="/chatroom/1">Chatroom4</a>
+							<li class="ml-5 mb-2"><a class="text-decoration-none text-light "
+									href="/chatroom/1">Chatroom5</a>
+						</ul>
+					</div>
+					</li>
+					</li>
+					</ul>
+				</div>
+				<div class="border-top border-light mt-3">
+					<input type="text" class="mt-4 col-12 border rounded-pill text-center mb-1" placeholder="Search">
+					<div class="col overflow-auto" style="height:25vh;">
+						<ul class="nav navbar-nav">
+							<li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+										class="nav-msg-img"
+										src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+									preview</a></li>
+							<li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+										class="nav-msg-img"
+										src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+									preview</a></li>
+							<li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+										class="nav-msg-img"
+										src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+									preview</a></li>
+							<li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+										class="nav-msg-img"
+										src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+									preview</a></li>
+							<li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+										class="nav-msg-img"
+										src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+									preview</a></li>
+							<li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+										class="nav-msg-img"
+										src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+									preview</a></li>
+							<li class="active mt-2"><a class="text-decoration-none text-light" href="/news"> <img
+										class="nav-msg-img"
+										src="{% static 'login_and_registration_app/images/facebook.png' %}" /> msg
+									preview</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col ml-5">
+				<div class="d-inline">
+					<p class="h4 ml-3 mt-4">News Feed</p>
+					<p class="ml-3">News</p>
+				</div>
+				<div class="col overflow-auto mt-2" style="height:70vh">
+					<div class="ml-1 scrollspy overflow-auto">
+						<div class="col overflow-auto" style="height:80vh">
+							<div class="row">
+								<p>content</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
 </body>
+
 </html>
 
 <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->

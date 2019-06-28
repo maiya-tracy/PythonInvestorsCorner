@@ -2,74 +2,216 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
-  <link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
-  <title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
+	<link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
+	<title>Home</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.container-fluid {
+			padding: 0;
+		}
+
+		.view-height {
+			height: vh;
+		}
+
+		.jumbotron {
+			height: 80vh;
+		}
+
+		.background-color {
+			background-color: black;
+		}
+
+		.parallax1 {
+			height: 15vh;
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: repeat;
+			background-size: cover;
+		}
+
+		.about_us {
+			height: 75vh;
+		}
+
+		.about-us-img {
+			height: 9vw;
+			width: auto;
+		}
+
+		.img-circle {
+			border-radius: 50%;
+		}
+
+		.footer-height {
+			height: 80vh;
+		}
+
+		.footer-height-content {
+			height: 53vh;
+		}
+
+		.floating-menu {
+			font-family: sans-serif;
+			background: none;
+			padding: 5px;
+			width: 50px;
+			z-index: 100;
+			position: fixed;
+			top: 150px;
+			left: 0px;
+		}
+
+		.floating-menu a {
+			font-size: 0.9em;
+			display: block;
+			margin: 0 0.5em;
+			color: white;
+		}
+	</style>
 </head>
 
 <body>
-  <div class="container p-0 ">
-    <div class="row">
-      <div class="col">
-        <a href="***" class="btn btn-outline-dark btn-lg rounded-buttons ">Logo</a>
-        <a href="***" class="btn btn-dark rounded-buttons">About</a>
-        <a href="***" class="btn btn-dark rounded-buttons">Contact</a>
-        <a href="***" class="btn btn-dark rounded-buttons">Learn More</a>
-      </div>
-      <div class='col text-right'>
-        <a href="/login" class="btn btn-success rounded-buttons">login</a>
-        <a href="/registration" class="btn btn-danger rounded-buttons">registration</a>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="jumbotron jumbotron-fluid" id="jumbo">
-      <br>
-      <video id="video-background" playsinline muted autoplay loop>
-          <source src="{% static 'login_and_registration_app/images/background_scape.mp4' %}"type="video/mp4"></source>
-      </video>
-      <!-- Video by Ricardo Esquivel from Pexels -->
-      <div class="container text-center" id="jumbo-container">
-          <h1 class="display-4">Investor's Corner</h1>
-          <p class="lead">Connecting investors and financial analysts everywhere</p>
-          <br>
-          <a href="/registration" class="btn btn-danger btn-lg rounded-buttons">Sign Up</a>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-    </div>
-  </div>
-  <div class="container">
-    <br>
-    <div class="row justify-content-center">
-      <div class="col-4 text-center">
-        <img src="{% static 'login_and_registration_app/images/justin.jpg' %}" class="rounded-circle" id="auth-image" alt="author image">
-        <p>Justin Duong</p>
-        <p>Full Stack Developer</p>
-      </div>
-      <div class="col-4 text-center">
-        <img src="{% static 'login_and_registration_app/images/jack.jpg' %}" class="rounded-circle" id="auth-image" alt="author image">
-        <p>Jack Long</p>
-        <p>Full Stack Developer</p>
-      </div>
-      <div class="col-4 text-center">
-        <img src="{% static 'login_and_registration_app/images/maia.jpg' %}" class="rounded-circle" id="auth-image" alt="author image">
-        <p>Maiya Tracy</p>
-        <p>Full Stack Developer</p>
-      </div>
-    </div>
-  </div>
-  <div class="container" id="bottom-nav">
-    <br>
-    <br>
-  </div>
+	<div class="container-fluid">
+		<div class="row d-flex bd-highlight mb-3 mt-3 sticky-top bg-light">
+			<div class="ml-5 p-2 bd-highlight mr-2">Logo</div>
+			<div class="p-2 bd-highlight"><a href="#about-us" class="btn btn-dark btn pl-5 pr-5 rounded-pill">About</a>
+			</div>
+			<div class="p-2 bd-highlight"><a href="#contact" class="btn btn-dark btn pl-5 pr-5 rounded-pill">Contact</a>
+			</div>
+			<div class="mr-auto p-2 bd-highlight"><a href="#learn_more"
+					class="btn btn-dark btn pl-5 pr-5 rounded-pill">Learn more</a></div>
+			<div class="p-2 bd-highlight"><a href="/login"
+					class="btn top-nav-color btn pl-5 pr-5 rounded-pill text-light">Login</a></div>
+			<div class="p-2 bd-highlight mr-5"><a href="/registration"
+					class="btn btn-danger btn pl-5 pr-5 rounded-pill">Sign Up</a></div>
+		</div>
+		<nav class="floating-menu">
+			<a>
+				<img style="width: 40px; height: 40px"
+					src="{% static 'login_and_registration_app/images/homefacebook.png' %}">
+			</a>
+			<a>
+				<img style="width: 40px; height: 40px"
+					src="{% static 'login_and_registration_app/images/homegoogle.png' %}">
+			</a>
+			<a>
+				<img style="width: 40px; height: 40px"
+					src="{% static 'login_and_registration_app/images/homelinkedin.png' %}">
+			</a>
+		</nav>
+		<div class="jumbotron jumbotron-fluid" id="jumbo">
+			<video id="video-background" playsinline muted autoplay loop>
+				<source src="{% static 'login_and_registration_app/images/background_scape.mp4' %}" type="video/mp4">
+				</source>
+			</video>
+			<!-- Video by Ricardo Esquivel from Pexels -->
+			<div class="container text-center align-middle pt-5" id="jumbo-container">
+				<h1 class="display-4 text-center pt-5">Investor's Corner</h1>
+				<p class="lead">Connecting investors and financial analysts everywhere</p>
+				<br>
+				<a href="/registration" class="btn btn-danger btn pl-5 pr-5 mb-5 rounded-pill">Sign Up</a>
+			</div>
+		</div>
+		<!-- parallax -->
+		<div class="parallax1"></div>
+		<div class="container-fluid view-height text-center" id="about-us">
+			<div class="background-color about_us">
+				<div class="row mt-5 text-center justify-content-center">
+					<div class="col-3 mt-5 pt-5">
+						<img class="bg-light border rounded-circle about-us-img align-center text-center align-middle"
+							src="{% static 'login_and_registration_app/images/increasing-stocks.png' %}" />
+					</div>
+					<div class="col-3 mt-5 pt-5">
+						<img class="bg-light border rounded-circle about-us-img align-center text-center align-middle"
+							src="{% static 'login_and_registration_app/images/increasing-stocks.png' %}" />
+					</div>
+					<div class="col-3 mt-5 pt-5">
+						<img class="bg-light border rounded-circle about-us-img align-center text-center align-middle"
+							src="{% static 'login_and_registration_app/images/increasing-stocks.png' %}" />
+					</div>
+				</div>
+				<div class="row text-center justify-content-center">
+					<div class="col-3 mt-5">
+						<p class="h3 text-light">Stocks</p>
+						<p class="text-center text-light">
+							Our platform provides users to create a stock watch list at their leisure. We aim to create
+							an environment that fosters personal growth in the world of stocks.
+						</p>
+					</div>
+					<div class="col-3 mt-5">
+						<p class="h3 text-light">Communication</p>
+						<p class="text-center text-light">
+							Our platform provides users to create a stock watch list at their leisure. We aim to create
+							an environment that fosters personal growth in the world of stocks.
+						</p>
+					</div>
+					<div class="col-3 mt-5">
+						<p class="h3 text-light">Community</p>
+						<p class="text-center text-light">
+							Our platform provides users to create a stock watch list at their leisure. We aim to create
+							an environment that fosters personal growth in the world of stocks.
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- -------------------------------------------------------------------------------------------------------------------------------------------- -->
+			<div class="container-fluid footer-height text-center">
+				<div class="">
+					<div class="row mt-5 text-center justify-content-center">
+						<div class="col-2 mt-5">
+							<img src="{% static 'login_and_registration_app/images/facebook.png' %}"
+								class="rounded-circle" id="auth-image" alt="author image">
+							<p class="mb-1 ">Justin Duong</p>
+							<p>Full Stack Developer</p>
+						</div>
+						<div class="col-2 mt-5">
+							<img src="{% static 'login_and_registration_app/images/jack.jpg' %}" class="rounded-circle"
+								id="auth-image" alt="author image">
+							<p class="mb-1 mt-1">Jack Long</p>
+							<p>Full Stack Developer</p>
+						</div>
+						<div class="col-2 mt-5">
+							<img src="{% static 'login_and_registration_app/images/maia.jpg' %}" class="rounded-circle"
+								id="auth-image" alt="author image">
+							<p class="mb-1 mt-1">Maiya Tracy</p>
+							<p>Full Stack Developer</p>
+						</div>
+					</div>
+					<div class="container-fluid background-color footer-height-content">
+						<div class="row mt-2">
+							<div class="col mt-5">
+								<p class="text-light"> footer content wooohooo!</p>
+							</div>
+							<div class="col mt-5">
+								<p class="text-light"> footer content wooohooo!</p>
+							</div>
+							<div class="col mt-5">
+								<p class="text-light">footer content wooohooo!</p>
+							</div>
+							<div class="col mt-5">
+								<p class="text-light">content wooohooo!</p>
+							</div>
+							<div class="col mt-5">
+								<p class="text-light">content wooohooo!</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div> <!-- end of float bar -->
+
 </body>
 
 </html>
