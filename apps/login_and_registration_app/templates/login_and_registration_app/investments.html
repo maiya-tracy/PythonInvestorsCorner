@@ -9,18 +9,31 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- AJAX CDN-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- custom css links -->
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'login_and_registration_app/css/style.css' %}">
 	<link rel="shortcut icon" href="{% static 'login_and_registration_app/images/favicon.jpg' %}">
 	<!-- end of custom links -->
 	<title>Investments</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 	<script>
-		$(function(){
+		$(function searchOpen(){
+			var search = $('#stock_look').val()
+			var data = {
+				search : search
+			};
+			$.ajax({
+				url : '/investments/ajax_calls/stock_lookup',
+				data : data ,
+				dataType : 'jsonp',
+				jsonp : 'callback' ,
+				jsonpCallback : 'searchResult'
+			});
+		})
+
+		$(function searchResult(data){
 			$('#stock_look').autocomplete( {
-				source : "/investments/ajax_calls/stock_lookup",
-				minLength : 3,
+				source : data
 			});
 		});
 	</script>
@@ -152,7 +165,7 @@
 					<form class="pl-2 pt-3" action="/add_stock" method="POST">
 						<div class="input-group">
 							{% csrf_token %}
-							<input type="text" name="symbol">
+							<input type="text" name="symbol" id="stock_look" onkeyup="searchOpen()">
 							<div class="input-group-append">
 								<button class="btn btn-outline-success" type="submit">Find stock!</button>
 							</div>
