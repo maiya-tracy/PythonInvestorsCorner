@@ -207,6 +207,7 @@ def paper_stocks(request):
 # Pull Yahoo Finance Data for FAANG Stocks
 # ------------------------------------------------------------------
 def yahoo_pull_API(request, symbol) :
+    symbol = symbol.upper()
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
     stock_exists = Stock.objects.filter(symbol=symbol).exists() #logic to not repeat stocks
@@ -246,11 +247,38 @@ def investments_process(request):
 	else:
 		return redirect("/investments")
 
+def update_price(request) :
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
+		print("hack")
+		return redirect("/login")
+	else:
+		user_stocks = User.objects.get(id=request.session["userid"]).watched_stocks.all()
+		start = datetime.now() - timedelta(days=365)
+		end = datetime.now()
+		for stock in user_stocks :
+			f = web.DataReader(stock.symbol, 'yahoo', start, end, ).reset_index()
+			length = len(f) - 1
+			adj_price = f['Adj Close'][length]
+			date = f['Date'][length]
+			Stock_Price.objects.create(stock=stock, date=date, price=adj_price)
+		return redirect("/investments")
+
+def delete_stock(request, stock_id) :
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
+		print("hack")
+		return redirect("/login")
+	else:
+		delete_stock = Stock.objects.get(id=stock_id)
+		delete_stock.delete()
+		return redirect("/investments")
+
+
 
 
 # ------------------------------------------------------------------
 # Communities
 # ------------------------------------------------------------------
+
 def community(request):
 	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
 		print("hack")
