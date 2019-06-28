@@ -128,6 +128,7 @@
 				<div class="d-inline">
 					<p class="h4 ml-3 mt-4">WATCHLIST</p>
 					<p class="ml-3">Your watched stocks</p>
+					<a class="btn btn-success ml-3" href="/investments/update_price" role="button">Update Prices</a>
 				</div>
 				<div class="col overflow-auto mt-2" style="height:70vh">
 					<div class="ml-1 scrollspy overflow-auto">
@@ -139,6 +140,7 @@
 									<br>
 									<p class="h2 d-inline">{{ stock.symbol }}</p>
 									<p class="text-success pb-5">Current Price : ${{ stock.prices.last.price}}</p>
+									<small class="pb-5">Updated at :{{ stock.prices.last.date}}</small>
 								</div>
 								{% endfor %}
 							</div>
