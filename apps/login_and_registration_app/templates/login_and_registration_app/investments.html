@@ -141,6 +141,7 @@
 									<p class="h2 d-inline">{{ stock.symbol }}</p>
 									<p class="text-success pb-5">Current Price : ${{ stock.prices.last.price}}</p>
 									<small class="pb-5">Updated at :{{ stock.prices.last.date}}</small>
+									<a href="/investments/delete_stock/{{stock.id}}">Delete</a>
 								</div>
 								{% endfor %}
 							</div>

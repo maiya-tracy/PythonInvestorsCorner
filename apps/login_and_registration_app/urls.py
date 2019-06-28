@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^news$', views.news, name='news'),
     url(r'^investments$', views.investments),
     url(r'^investments/update_price$', views.update_price),  #update watched stocks
+    url(r'^investments/delete_stock/(?P<stock_id>\d+)$', views.delete_stock),  #update watched stocks
     url(r'^investments/processing', views.investments_process),   #<--- DO WE EVER USE THIS?
     url(r'^add_stock$', views.add_stock, name='add_stock'),  #Jack - add stock route
     url(r'^paperstocks$', views.paper_stocks),

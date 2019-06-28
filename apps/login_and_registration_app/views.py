@@ -261,7 +261,15 @@ def update_price(request) :
 			adj_price = f['Adj Close'][length]
 			date = f['Date'][length]
 			Stock_Price.objects.create(stock=stock, date=date, price=adj_price)
+		return redirect("/investments")
 
+def delete_stock(request, stock_id) :
+	if 'isloggedin' not in request.session or  request.session['isloggedin'] == False:
+		print("hack")
+		return redirect("/login")
+	else:
+		delete_stock = Stock.objects.get(id=stock_id)
+		delete_stock.delete()
 		return redirect("/investments")
 
 
