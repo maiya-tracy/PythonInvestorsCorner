@@ -207,6 +207,7 @@ def paper_stocks(request):
 # Pull Yahoo Finance Data for FAANG Stocks
 # ------------------------------------------------------------------
 def yahoo_pull_API(request, symbol) :
+    symbol = symbol.upper()
     start = datetime.now() - timedelta(days=365)
     end = datetime.now()
     stock_exists = Stock.objects.filter(symbol=symbol).exists() #logic to not repeat stocks
