@@ -16,7 +16,7 @@ idna==2.8
 ipython==7.5.0
 ipython-genutils==0.2.0
 jedi==0.13.3
-lxml==4.3.4
+lxml==4.6.2
 numpy==1.16.4
 oauthlib==3.0.1
 pandas==0.24.2
